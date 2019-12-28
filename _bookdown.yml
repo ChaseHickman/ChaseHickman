@@ -1,0 +1,4 @@
+chapter_name: "Chapter "
+repo: https://github.com/ChaseHickman/ChaseHickman
+output_dir: docs
+new_session: yes
