@@ -1,10 +1,32 @@
 ---
-title: "I am Seneca"
+subtitle: "Data Analytics and Statistical Learning Repository in R, Python, SQL, Markdown, LaTex, & Git(Hub)"
 author: "Chase Hickman"
-date: "est.27-Dec-2019"
 site: bookdown::bookdown_site
 documentclass: book
-link-citations: yes
+bibliography: ["citations.bib"]
+pandoc_args: [ "--csl", "apa_pl.csl" ]
+link-citations: true
 ---
 
-# This is header one.
+# Preface {-}
+
+> "*Docendo discimus* (by teaching, we learn)"
+> 
+> <div style="text-align: right">---Seneca the Younger (c. 4 BC – 65 AD) </div>
+
+This is my personal repository for collected insights, routines, code, analyses, 
+links etc. I find useful in my work.
+
+# Liscensing {-}
+
+I am publishing this book with 
+*[no license](https://choosealicense.com/no-permission/)*. Which means:
+
+> When you make a creative work (which includes code), the work is under 
+exclusive copyright by default. Unless you include a license that specifies 
+otherwise, nobody else can copy, distribute, or modify your work without being 
+at risk of take-downs, shake-downs, or litigation.
+
+# About the Author {-}
+
+Rawr. I'm a dinosaur.
