@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>0.3 You can call GC yourself with base::gc(), but the user should not ever have the need. | _main.utf8.md</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="0.3 You can call GC yourself with base::gc(), but the user should not ever have the need. | _main.utf8.md" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="0.3 You can call GC yourself with base::gc(), but the user should not ever have the need. | _main.utf8.md" />
+  
+  
+  
+
+<meta name="author" content="Chase Hickman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="names-and-values.html"/>
+<link rel="next" href="import.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Chase Hickman</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="licensing.html"><a href="licensing.html"><i class="fa fa-check"></i>Licensing</a></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i>Programming</a><ul>
+<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html"><i class="fa fa-check"></i>Advanced R</a></li>
+<li class="chapter" data-level="0.1" data-path="advanced-r-2nd-ed-hadley-wickham.html"><a href="advanced-r-2nd-ed-hadley-wickham.html"><i class="fa fa-check"></i><b>0.1</b> <span>Advanced R</span> 2nd ed. Hadley Wickham</a></li>
+<li class="chapter" data-level="0.2" data-path="names-and-values.html"><a href="names-and-values.html"><i class="fa fa-check"></i><b>0.2</b> ### Names and Values</a><ul>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#binding"><i class="fa fa-check"></i>Binding</a></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#copyonmod"><i class="fa fa-check"></i>Copy-on-Modify</a><ul>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#trace-copying-of-objects"><i class="fa fa-check"></i>Trace Copying of Objects</a></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#character-vectors"><i class="fa fa-check"></i>Character Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#modinplace"><i class="fa fa-check"></i>Modify-in-Place</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><i class="fa fa-check"></i><b>0.3</b> You can call GC yourself with <code>base::gc()</code>, but the user should not ever have the need.</a><ul>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="0.3.1" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#vectors"><i class="fa fa-check"></i><b>0.3.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#atomic-vectors"><i class="fa fa-check"></i>Atomic Vectors</a><ul>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#types"><i class="fa fa-check"></i>Types</a></li>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#combine-scalars"><i class="fa fa-check"></i>Combine scalars</a></li>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#missing-values"><i class="fa fa-check"></i>Missing Values</a></li>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#testing-and-coercing-vectors"><i class="fa fa-check"></i>Testing and Coercing Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#attributes"><i class="fa fa-check"></i>Attributes</a><ul>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#getting-and-setting-attributes"><i class="fa fa-check"></i>Getting and setting attributes</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>1</b> Import</a></li>
+<li class="chapter" data-level="2" data-path="tidy.html"><a href="tidy.html"><i class="fa fa-check"></i><b>2</b> Tidy</a></li>
+<li class="chapter" data-level="3" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>3</b> Transform</a></li>
+<li class="chapter" data-level="4" data-path="visualise.html"><a href="visualise.html"><i class="fa fa-check"></i><b>4</b> Visualise</a></li>
+<li class="chapter" data-level="5" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>5</b> Statistics</a></li>
+<li class="chapter" data-level="6" data-path="communicate.html"><a href="communicate.html"><i class="fa fa-check"></i><b>6</b> Communicate</a><ul>
+<li class="chapter" data-level="6.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html"><i class="fa fa-check"></i><b>6.1</b> Markdown/bookdown tips</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#syntax"><i class="fa fa-check"></i><b>6.1.1</b> Syntax</a><ul>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#inline-formatting"><i class="fa fa-check"></i>Inline Formatting</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#section-headers"><i class="fa fa-check"></i>Section Headers</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#unordered-lists"><i class="fa fa-check"></i>Unordered Lists</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#ordered-lists"><i class="fa fa-check"></i>Ordered lists</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#block-quotes"><i class="fa fa-check"></i>Block Quotes</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#code-blocks"><i class="fa fa-check"></i>Code Blocks</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#horizontal-rules"><i class="fa fa-check"></i>Horizontal Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="6.1.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#cache-large-code-chunks"><i class="fa fa-check"></i><b>6.1.2</b> Cache large code chunks</a></li>
+<li class="chapter" data-level="6.1.3" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#chunk-options"><i class="fa fa-check"></i><b>6.1.3</b> Chunk Options</a><ul>
+<li class="chapter" data-level="6.1.3.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#collapse"><i class="fa fa-check"></i><b>6.1.3.1</b> Collapse</a></li>
+<li class="chapter" data-level="6.1.3.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#error"><i class="fa fa-check"></i><b>6.1.3.2</b> Error</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#chapter-session-info"><i class="fa fa-check"></i>Chapter Session Info</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need." class="section level2">
+<h2><span class="header-section-number">0.3</span> You can call GC yourself with <code>base::gc()</code>, but the user should not ever have the need.</h2>
+<div id="session-info" class="section level4 unnumbered">
+<h4>Session Info</h4>
+<pre><code>## R version 3.6.1 (2019-07-05)
+## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## Running under: Windows 10 x64 (build 18363)
+## 
+## Matrix products: default
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] lobstr_1.1.1
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_1.0.1      bookdown_0.16   digest_0.6.20   crayon_1.3.4   
+##  [5] magrittr_1.5    evaluate_0.14   pillar_1.4.2    rlang_0.4.5    
+##  [9] stringi_1.4.3   vctrs_0.2.4     rmarkdown_1.13  tools_3.6.1    
+## [13] stringr_1.4.0   xfun_0.8        yaml_2.2.0      compiler_3.6.1 
+## [17] htmltools_0.4.0 knitr_1.23</code></pre>
+
+</div>
+<div id="vectors" class="section level3">
+<h3><span class="header-section-number">0.3.1</span> Vectors</h3>
+<p>R has two types of vectors: <strong>atomic</strong> vectors and <strong>list</strong> vectors.</p>
+<p>Atomic vectors have values all of the same type, while lists can have values of
+different types.</p>
+<p><strong>NULL</strong> is not a vector, but is often used in R to represent a zero length
+vector. For practical purposes you can consider it a vector.</p>
+<p>Vectors can have <em>attributes</em>; the most important are <strong>dimension</strong> and <strong>class</strong>.</p>
+<ul>
+<li>dimension: turns a vector into matrices and arrays</li>
+<li>class: critical for S3 objects like factors, dates &amp; date-time, data frames, and tibbles</li>
+</ul>
+<div id="atomic-vectors" class="section level4 unnumbered">
+<h4>Atomic Vectors</h4>
+<div id="types" class="section level5 unnumbered">
+<h5>Types</h5>
+<p>There are four primary types of atomic vectors, and their <strong>scalars</strong> (<em>i.e. individual value</em>) can
+be instantiated as:</p>
+<ol style="list-style-type: decimal">
+<li><strong>Logical</strong>: <code>TRUE</code>/<code>T</code>;<code>FALSE</code>/<code>F</code></li>
+<li><strong>Double</strong>: decimal <code>2.345</code>, scientific <code>2e10</code>, hexadecimal <code>3425h</code>, infinite <code>Inf</code>/<code>-Inf</code>, Not a Number <code>NaN</code></li>
+<li><strong>Integer</strong>: a non-fractional double followed by <code>L</code> (e.g. <code>7L</code>, <code>2e7L</code>, <code>3425hL</code> )</li>
+<li><strong>Character</strong>: strings surrounded by single/double quotes; <code>'Cats'</code> or <code>"Dogs"</code></li>
+</ol>
+<p>Doubles and Integers belong to meta-type <strong>numeric</strong>. <code>is.numeric()</code> tests if a vector can be interpreted
+as a number: <code>is.numeric(2.2)</code> = TRUE = <code>is.numeric(2L)</code> = TRUE</p>
+</div>
+<div id="combine-scalars" class="section level5 unnumbered">
+<h5>Combine scalars</h5>
+<p>Scalars can be combined to make longer vectors using <code>c()</code>:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb15-2" title="2"><span class="co">## [1] 1 2 3</span></a>
+<a class="sourceLine" id="cb15-3" title="3"><span class="kw">c</span>(T,T,F)</a>
+<a class="sourceLine" id="cb15-4" title="4"><span class="co">## [1]  TRUE  TRUE FALSE</span></a></code></pre></div>
+<p>R will flatten atomic vectors when combined with other atomic vectors:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">c</span>(<span class="dv">1</span>,<span class="kw">c</span>(<span class="dv">2</span>,<span class="kw">c</span>(<span class="fl">2.1</span>,<span class="fl">2.2</span>,<span class="fl">2.3</span>)),<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb16-2" title="2"><span class="co">## [1] 1.0 2.0 2.1 2.2 2.3 4.0</span></a></code></pre></div>
+<p><code>typeof()</code> and <code>length()</code> will return the type and length of an atomic vector:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">x &lt;-<span class="st"> </span><span class="ot">TRUE</span>; y &lt;-<span class="st"> </span><span class="kw">c</span>(1L, 2L, 3L, 4L)</a>
+<a class="sourceLine" id="cb17-2" title="2"></a>
+<a class="sourceLine" id="cb17-3" title="3"><span class="kw">typeof</span>(x); <span class="kw">length</span>(x)</a>
+<a class="sourceLine" id="cb17-4" title="4"><span class="co">## [1] &quot;logical&quot;</span></a>
+<a class="sourceLine" id="cb17-5" title="5"><span class="co">## [1] 1</span></a>
+<a class="sourceLine" id="cb17-6" title="6"><span class="kw">typeof</span>(y); <span class="kw">length</span>(y)</a>
+<a class="sourceLine" id="cb17-7" title="7"><span class="co">## [1] &quot;integer&quot;</span></a>
+<a class="sourceLine" id="cb17-8" title="8"><span class="co">## [1] 4</span></a>
+<a class="sourceLine" id="cb17-9" title="9"><span class="kw">typeof</span>(<span class="ot">NULL</span>); <span class="kw">length</span>(<span class="ot">NULL</span>)</a>
+<a class="sourceLine" id="cb17-10" title="10"><span class="co">## [1] &quot;NULL&quot;</span></a>
+<a class="sourceLine" id="cb17-11" title="11"><span class="co">## [1] 0</span></a></code></pre></div>
+</div>
+<div id="missing-values" class="section level5 unnumbered">
+<h5>Missing Values</h5>
+<p>Missing values are represented by <code>NA</code> (Not Applicable). There are logical (<code>NA</code>),
+integer (<code>NA_integer_</code>), double (<code>NA_real_</code>), and character (<code>NA_character_</code>) types
+but R will parse the appropriate <code>NA</code> needed.</p>
+<p>Many logistical tests in R containing <code>NA</code> will return <code>NA</code>:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># not false returns true; not NA returns NA</span></a>
+<a class="sourceLine" id="cb18-2" title="2"><span class="op">!</span><span class="ot">FALSE</span>; <span class="op">!</span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb18-3" title="3"><span class="co">## [1] TRUE</span></a>
+<a class="sourceLine" id="cb18-4" title="4"><span class="co">## [1] NA</span></a></code></pre></div>
+<p>For this reason, finding missing values in a vector is not obvious:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">0</span>,<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="dv">3</span>,<span class="dv">4</span>)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="co"># a logistical test for NA returns all NA</span></a>
+<a class="sourceLine" id="cb19-3" title="3">x<span class="op">==</span><span class="ot">NA</span></a>
+<a class="sourceLine" id="cb19-4" title="4"><span class="co">## [1] NA NA NA NA NA</span></a></code></pre></div>
+<p>Instead, use <code>is.na()</code> to test for missing values:</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw">is.na</span>(x)</a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="co">## [1] FALSE  TRUE  TRUE FALSE FALSE</span></a></code></pre></div>
+<p>The exception is when all possible values would not change the result:</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># this logical statement is true regardless of all possible NA values</span></a>
+<a class="sourceLine" id="cb21-2" title="2"><span class="ot">NA</span> <span class="op">|</span><span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb21-3" title="3"><span class="co">## [1] TRUE</span></a></code></pre></div>
+</div>
+<div id="testing-and-coercing-vectors" class="section level5 unnumbered">
+<h5>Testing and Coercing Vectors</h5>
+<p>There are many <code>is.*()</code> pattern functions in R to test vector type. <code>is.logical()</code>,
+<code>is.integer()</code>, <code>is.double()</code>, and <code>is.character()</code> all test for the four primary
+atomic vector types:</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw">is.logical</span>(<span class="dt">x =</span> <span class="kw">c</span>(T,T,F,F))</a>
+<a class="sourceLine" id="cb22-2" title="2"><span class="co">## [1] TRUE</span></a>
+<a class="sourceLine" id="cb22-3" title="3"><span class="kw">is.integer</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="fl">2.2</span>, <span class="fl">3.0</span>))</a>
+<a class="sourceLine" id="cb22-4" title="4"><span class="co">## [1] FALSE</span></a></code></pre></div>
+<p>However, some <code>is.*()</code> pattern functions behave unexpectedly. <code>is.numeric()</code>,
+for example, returns false for factors, Date, POSIXt and difftime because they
+have their own methods for detection; even though they are numbers and arithmetic
+generally makes sense. So be sure to read the documentation carefully (<code>?is.numeric()</code>).</p>
+<hr />
+<p><em>coercing types</em></p>
+<p>It is possible to coerce vectors to a new type, or two combine two types of vectors into
+one. The types will be coerced in this order: <em>character &gt; double &gt; integer &gt; logical</em></p>
+<p>Use <code>as.*()</code> functions to specifically coerce types. R can also implicitly coerce types
+when needed. R will give a warning message if it fails or <code>NA</code>s are introduced.</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># combining a double and a character returns a character vector</span></a>
+<a class="sourceLine" id="cb23-2" title="2"><span class="kw">str</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="st">&quot;2&quot;</span>))</a>
+<a class="sourceLine" id="cb23-3" title="3"><span class="co">##  chr [1:2] &quot;1&quot; &quot;2&quot;</span></a>
+<a class="sourceLine" id="cb23-4" title="4"></a>
+<a class="sourceLine" id="cb23-5" title="5"><span class="co"># implicitly return the sum of a logical as integer </span></a>
+<a class="sourceLine" id="cb23-6" title="6"><span class="kw">str</span>(<span class="kw">sum</span>(<span class="kw">c</span>(T,T,F)))</a>
+<a class="sourceLine" id="cb23-7" title="7"><span class="co">##  int 2</span></a>
+<a class="sourceLine" id="cb23-8" title="8"></a>
+<a class="sourceLine" id="cb23-9" title="9"><span class="co"># explicitly coerce doubles to characters</span></a>
+<a class="sourceLine" id="cb23-10" title="10"><span class="kw">str</span>(<span class="kw">as.character</span>(<span class="kw">c</span>(<span class="fl">2e1</span>, <span class="dv">200</span>)))</a>
+<a class="sourceLine" id="cb23-11" title="11"><span class="co">##  chr [1:2] &quot;20&quot; &quot;200&quot;</span></a></code></pre></div>
+</div>
+</div>
+<div id="attributes" class="section level4 unnumbered">
+<h4>Attributes</h4>
+<p>Other data-structures in R are built on top of these atomic vectors using attributes.
+For example, the <strong>dimension</strong> attribute transforms vectors into matrices and arrays.</p>
+<div id="getting-and-setting-attributes" class="section level5 unnumbered">
+<h5>Getting and setting attributes</h5>
+<p>Attributes are like meta-data you assign in name-value pairs:</p>
+<p><code>attr()</code> to retrieve and set single attributes
+<code>attributes()</code> to retrieve multiple attributes
+<code>structure()</code> to set multiple attributes</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">fruit &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb24-2" title="2"></a>
+<a class="sourceLine" id="cb24-3" title="3"><span class="co"># create fruit attributes type and days old</span></a>
+<a class="sourceLine" id="cb24-4" title="4"><span class="kw">attr</span>(<span class="dt">x =</span> fruit, <span class="dt">which =</span> <span class="st">&#39;type&#39;</span>) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;orange&#39;</span>,<span class="st">&#39;apple&#39;</span>,<span class="st">&#39;pear&#39;</span>); <span class="kw">attr</span>(fruit,<span class="st">&#39;type&#39;</span>)</a>
+<a class="sourceLine" id="cb24-5" title="5"><span class="co">## [1] &quot;orange&quot; &quot;apple&quot;  &quot;pear&quot;</span></a>
+<a class="sourceLine" id="cb24-6" title="6"><span class="kw">attr</span>(<span class="dt">x =</span> fruit, <span class="dt">which =</span> <span class="st">&#39;days old&#39;</span>) &lt;-<span class="st"> </span><span class="dv">2</span>; <span class="kw">str</span>(<span class="kw">attributes</span>(<span class="dt">x =</span> fruit))</a>
+<a class="sourceLine" id="cb24-7" title="7"><span class="co">## List of 2</span></a>
+<a class="sourceLine" id="cb24-8" title="8"><span class="co">##  $ type    : chr [1:3] &quot;orange&quot; &quot;apple&quot; &quot;pear&quot;</span></a>
+<a class="sourceLine" id="cb24-9" title="9"><span class="co">##  $ days old: num 2</span></a>
+<a class="sourceLine" id="cb24-10" title="10"></a>
+<a class="sourceLine" id="cb24-11" title="11"><span class="co"># simultaneously create object and attributes</span></a>
+<a class="sourceLine" id="cb24-12" title="12">fruit &lt;-<span class="st"> </span><span class="kw">structure</span>(</a>
+<a class="sourceLine" id="cb24-13" title="13">  <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,</a>
+<a class="sourceLine" id="cb24-14" title="14">  <span class="dt">type =</span> <span class="kw">c</span>(<span class="st">&#39;orange&#39;</span>,<span class="st">&#39;apple&#39;</span>,<span class="st">&#39;pear&#39;</span>),</a>
+<a class="sourceLine" id="cb24-15" title="15">  <span class="st">&#39;days old&#39;</span> =<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb24-16" title="16">)</a>
+<a class="sourceLine" id="cb24-17" title="17"></a>
+<a class="sourceLine" id="cb24-18" title="18"><span class="kw">str</span>(<span class="kw">attributes</span>(fruit))</a>
+<a class="sourceLine" id="cb24-19" title="19"><span class="co">## List of 2</span></a>
+<a class="sourceLine" id="cb24-20" title="20"><span class="co">##  $ type    : chr [1:3] &quot;orange&quot; &quot;apple&quot; &quot;pear&quot;</span></a>
+<a class="sourceLine" id="cb24-21" title="21"><span class="co">##  $ days old: num 2</span></a></code></pre></div>
+
+</div>
+</div>
+</div>
+</div>
+<!-- </div> -->
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="names-and-values.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="import.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

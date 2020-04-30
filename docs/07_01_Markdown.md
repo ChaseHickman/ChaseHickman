@@ -1,7 +1,7 @@
-# Markdown/bookdown tips
+## Markdown/bookdown tips
 
-## Syntax
-### Inline Formatting {-}
+### Syntax
+#### Inline Formatting {-}
 
 Element | Code | Notes
 --- | --- | ---
@@ -12,15 +12,16 @@ __Underline__ | `__Underline__` | two underscores
 ~~Strike-through~~ | `~~Strike-through~~` | double tildes
 Sub~script~ | `Sub~script~` | single tildes
 Super^script^ | `Super^script^` | single carets
+$\LaTeX$ | `$\LaTeX$` | enclose syntax with `$`
 `inline_code()` | `` `inline_code()` `` | single back-ticks
-R, Inline, Code | `` `r_ c('R','Inline','Code')` `` | *no underscore*
+R, Inline, Code | `` `r c('R','Inline','Code')` `` | single back-ticks beginning r *space*
 [Hyperlink](https://www.google.com) | `[Hyperlink](https://www.google.com)` | `[text](link)`
 ![R Logo](./Rlogo.png) | `![R Logo](./Rlogo.png)` | `![text](link)`
-Footnote^[Example footnote.] | `^[Example footnote.]` | 
+Footnote^[Example footnote.] | `^[Example footnote.]` | <span style="color: red;">requires a </span> `.`
 @example | `@example` | \@tag ref to BibTeX citation
 [@example] | `[@example]` | alternative style
 
-### Section Headers {-}
+#### Section Headers {-}
 
 ```
 # level 1 header
@@ -33,7 +34,7 @@ Add `{-}` after the header to remove section numbering:
 ```
 # Preface {-}
 ```
-### Unordered Lists {-}
+#### Unordered Lists {-}
 
 * item 1
 * item 2
@@ -46,7 +47,7 @@ Unordered list items start with `*`, `-`, or `+`; and can be nested by indenting
 * item 2
     * sub-item 1
 ```
-### Ordered lists {-}
+#### Ordered lists {-}
 
 1. item 1
 2. item 2
@@ -60,7 +61,7 @@ Ordered lists begin with a number and a period. Same indenting rules as unordere
     1. sub-item 1
 ```
 
-### Block Quotes {-}
+#### Block Quotes {-}
 
 > "You miss 100% of the shots you don't take.
 >
@@ -80,29 +81,78 @@ Block quotes begin with a `>`. You can use markdown formatting or HTML tags to r
 
 
 
-### Code Blocks {-}
+#### Code Blocks {-}
 
 ```
     ```
     Use three back ticks to display text without markdown formatting.
     ```
 ```
-### Horizontal Rules {-}
 
-***
+#### Tables
 
+##### Grid Tables
+
+Basic tables can be used by aligning `+`,`-`, & `|` in a grid as below. One
+advantage is the ability to put more than one markdown element in a cell. No
+alignment options are available and you may have to reformat your table manually.
+
+```
++------------+--------+--------+
+|Date        |Event   |   Times|
++------------+--------+--------+
+|30-Apr-2020 |Swimming|* 3:00pm|
+|            |        |* 4:30pm|
++------------+--------+--------+
+```
++------------+--------+--------+
+|Date        |Event   |   Times|
++------------+--------+--------+
+|30-Apr-2020 |Swimming|* 3:00pm|
+|            |        |* 4:30pm|
++------------+--------+--------+
+
+##### Pipe Tables
+
+
+
+#### Horizontal Rules {-}
 Three or more `***`, `---`, or `___` will produce a horizontal rule; as will the `<hr>` HTML tag.
 
-## Cache large code chunks
+### Cache large code chunks
 
 ` ```{r chunk-id, cache=TRUE} `
 
-## Resources {-}
+### Chunk Options
+
+#### Collapse
+
+collapse=TRUE results in 
+
+```r
+x <- 1:10; print(x)
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+rather than
+
+```r
+x <- 1:10; print(x)
+```
+
+```
+##  [1]  1  2  3  4  5  6  7  8  9 10
+```
+
+#### Error
+
+error=TRUE 
+
+### Resources {-}
 [Bookdown: Authoring Books with R Markdown](https://bookdown.org/yihui/bookdown) by its creator, Yihui Xie.
 
 [Pandoc](https://pandoc.org/)
 
-## Chapter Session Info {-}
+### Chapter Session Info {-}
 
 ```
 ## R version 3.6.1 (2019-07-05)
@@ -110,13 +160,6 @@ Three or more `***`, `---`, or `___` will produce a horizontal rule; as will the
 ## Running under: Windows 10 x64 (build 18363)
 ## 
 ## Matrix products: default
-## 
-## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     

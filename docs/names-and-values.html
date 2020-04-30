@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>0.2 ### Names and Values | _main.utf8.md</title>
+  <meta name="description" content="" />
+  <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="0.2 ### Names and Values | _main.utf8.md" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="0.2 ### Names and Values | _main.utf8.md" />
+  
+  
+  
+
+<meta name="author" content="Chase Hickman" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="advanced-r-2nd-ed-hadley-wickham.html"/>
+<link rel="next" href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(title);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Chase Hickman</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="licensing.html"><a href="licensing.html"><i class="fa fa-check"></i>Licensing</a></li>
+<li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i>Programming</a><ul>
+<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html"><i class="fa fa-check"></i>Advanced R</a></li>
+<li class="chapter" data-level="0.1" data-path="advanced-r-2nd-ed-hadley-wickham.html"><a href="advanced-r-2nd-ed-hadley-wickham.html"><i class="fa fa-check"></i><b>0.1</b> <span>Advanced R</span> 2nd ed. Hadley Wickham</a></li>
+<li class="chapter" data-level="0.2" data-path="names-and-values.html"><a href="names-and-values.html"><i class="fa fa-check"></i><b>0.2</b> ### Names and Values</a><ul>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#binding"><i class="fa fa-check"></i>Binding</a></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#copyonmod"><i class="fa fa-check"></i>Copy-on-Modify</a><ul>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#trace-copying-of-objects"><i class="fa fa-check"></i>Trace Copying of Objects</a></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#character-vectors"><i class="fa fa-check"></i>Character Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="names-and-values.html"><a href="names-and-values.html#modinplace"><i class="fa fa-check"></i>Modify-in-Place</a></li>
+</ul></li>
+<li class="chapter" data-level="0.3" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><i class="fa fa-check"></i><b>0.3</b> You can call GC yourself with <code>base::gc()</code>, but the user should not ever have the need.</a><ul>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="0.3.1" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#vectors"><i class="fa fa-check"></i><b>0.3.1</b> Vectors</a><ul>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#atomic-vectors"><i class="fa fa-check"></i>Atomic Vectors</a><ul>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#types"><i class="fa fa-check"></i>Types</a></li>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#combine-scalars"><i class="fa fa-check"></i>Combine scalars</a></li>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#missing-values"><i class="fa fa-check"></i>Missing Values</a></li>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#testing-and-coercing-vectors"><i class="fa fa-check"></i>Testing and Coercing Vectors</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#attributes"><i class="fa fa-check"></i>Attributes</a><ul>
+<li class="chapter" data-level="" data-path="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html"><a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html#getting-and-setting-attributes"><i class="fa fa-check"></i>Getting and setting attributes</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>1</b> Import</a></li>
+<li class="chapter" data-level="2" data-path="tidy.html"><a href="tidy.html"><i class="fa fa-check"></i><b>2</b> Tidy</a></li>
+<li class="chapter" data-level="3" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>3</b> Transform</a></li>
+<li class="chapter" data-level="4" data-path="visualise.html"><a href="visualise.html"><i class="fa fa-check"></i><b>4</b> Visualise</a></li>
+<li class="chapter" data-level="5" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>5</b> Statistics</a></li>
+<li class="chapter" data-level="6" data-path="communicate.html"><a href="communicate.html"><i class="fa fa-check"></i><b>6</b> Communicate</a><ul>
+<li class="chapter" data-level="6.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html"><i class="fa fa-check"></i><b>6.1</b> Markdown/bookdown tips</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#syntax"><i class="fa fa-check"></i><b>6.1.1</b> Syntax</a><ul>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#inline-formatting"><i class="fa fa-check"></i>Inline Formatting</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#section-headers"><i class="fa fa-check"></i>Section Headers</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#unordered-lists"><i class="fa fa-check"></i>Unordered Lists</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#ordered-lists"><i class="fa fa-check"></i>Ordered lists</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#block-quotes"><i class="fa fa-check"></i>Block Quotes</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#code-blocks"><i class="fa fa-check"></i>Code Blocks</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#horizontal-rules"><i class="fa fa-check"></i>Horizontal Rules</a></li>
+</ul></li>
+<li class="chapter" data-level="6.1.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#cache-large-code-chunks"><i class="fa fa-check"></i><b>6.1.2</b> Cache large code chunks</a></li>
+<li class="chapter" data-level="6.1.3" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#chunk-options"><i class="fa fa-check"></i><b>6.1.3</b> Chunk Options</a><ul>
+<li class="chapter" data-level="6.1.3.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#collapse"><i class="fa fa-check"></i><b>6.1.3.1</b> Collapse</a></li>
+<li class="chapter" data-level="6.1.3.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#error"><i class="fa fa-check"></i><b>6.1.3.2</b> Error</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#resources"><i class="fa fa-check"></i>Resources</a></li>
+<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#chapter-session-info"><i class="fa fa-check"></i>Chapter Session Info</a></li>
+</ul></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://bookdown.org" target="blank">Published with bookdown</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./"></a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="names-and-values" class="section level2">
+<h2><span class="header-section-number">0.2</span> ### Names and Values</h2>
+<div id="binding" class="section level4 unnumbered">
+<h4>Binding</h4>
+<p>In R, names are assigned a value (e.g. a vector doesn’t have a name, rather, a name(s) points to a vector). The actual address of an object is exposed by <code>lobstr::obj_addr()</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="kw">obj_addr</span>(x)</a>
+<a class="sourceLine" id="cb1-3" title="3"><span class="co">## [1] &quot;0x16b0ddc0&quot;</span></a>
+<a class="sourceLine" id="cb1-4" title="4"></a>
+<a class="sourceLine" id="cb1-5" title="5"><span class="co"># notice x and y are pointers to the same object</span></a>
+<a class="sourceLine" id="cb1-6" title="6">y &lt;-<span class="st"> </span>x</a>
+<a class="sourceLine" id="cb1-7" title="7"><span class="kw">obj_addr</span>(y)</a>
+<a class="sourceLine" id="cb1-8" title="8"><span class="co">## [1] &quot;0x16b0ddc0&quot;</span></a>
+<a class="sourceLine" id="cb1-9" title="9"></a>
+<a class="sourceLine" id="cb1-10" title="10"><span class="co"># this applies to function arguments in their environment as well</span></a>
+<a class="sourceLine" id="cb1-11" title="11">fn &lt;-<span class="st"> </span><span class="cf">function</span>(z){</a>
+<a class="sourceLine" id="cb1-12" title="12">  z</a>
+<a class="sourceLine" id="cb1-13" title="13">}</a>
+<a class="sourceLine" id="cb1-14" title="14"><span class="co"># fn() returns the argument z at the same address</span></a>
+<a class="sourceLine" id="cb1-15" title="15"><span class="kw">obj_addr</span>(<span class="kw">fn</span>(x))</a>
+<a class="sourceLine" id="cb1-16" title="16"><span class="co">## [1] &quot;0x16b0ddc0&quot;</span></a></code></pre></div>
+</div>
+<div id="copyonmod" class="section level4 unnumbered">
+<h4>Copy-on-Modify</h4>
+<p>R objects are generally immutable. A new copy is made when you modify an object. There are two <a href="names-and-values.html#modinplace">Modify-in-Place</a> exceptions.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># create vector x</span></a>
+<a class="sourceLine" id="cb2-2" title="2">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span></a>
+<a class="sourceLine" id="cb2-3" title="3"><span class="kw">obj_addr</span>(x)</a>
+<a class="sourceLine" id="cb2-4" title="4"><span class="co">## [1] &quot;0x18ffe230&quot;</span></a>
+<a class="sourceLine" id="cb2-5" title="5"></a>
+<a class="sourceLine" id="cb2-6" title="6"><span class="co"># modify first value in x</span></a>
+<a class="sourceLine" id="cb2-7" title="7">x[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="dv">0</span></a>
+<a class="sourceLine" id="cb2-8" title="8"></a>
+<a class="sourceLine" id="cb2-9" title="9"><span class="co"># note x now points to a new object</span></a>
+<a class="sourceLine" id="cb2-10" title="10"><span class="kw">obj_addr</span>(x)</a>
+<a class="sourceLine" id="cb2-11" title="11"><span class="co">## [1] &quot;0x1904f168&quot;</span></a></code></pre></div>
+<div id="trace-copying-of-objects" class="section level5 unnumbered">
+<h5>Trace Copying of Objects</h5>
+<p><code>base::tracemem()</code> will mark an object and print a message whenever it is copied. This is
+a major cause of hard-to-predict memory usage.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># tell R to trace copies of object reference `x`</span></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw">tracemem</span>(<span class="dt">x =</span> x)</a>
+<a class="sourceLine" id="cb3-3" title="3"></a>
+<a class="sourceLine" id="cb3-4" title="4"><span class="co"># modify the first element in vector `x`</span></a>
+<a class="sourceLine" id="cb3-5" title="5"><span class="co"># R prints a tracemem message to show the object is copied to a new address</span></a>
+<a class="sourceLine" id="cb3-6" title="6">x[[<span class="dv">1</span>]] &lt;-<span class="st"> </span><span class="dv">2</span></a>
+<a class="sourceLine" id="cb3-7" title="7"><span class="co">#&gt; tracemem[0x000002379ca5a190 -&gt; 0x000002379cd8dbb0]:</span></a>
+<a class="sourceLine" id="cb3-8" title="8"></a>
+<a class="sourceLine" id="cb3-9" title="9"><span class="co"># tell R to stop tracing this object</span></a>
+<a class="sourceLine" id="cb3-10" title="10">base<span class="op">::</span><span class="kw">untracemem</span>(<span class="dt">x =</span> x)</a></code></pre></div>
+</div>
+<div id="lists" class="section level5 unnumbered">
+<h5>Lists</h5>
+<p>Just like variables, each element of a list also points to a value. <a href="names-and-values.html#copyonmod">Copy-on-modify</a> and <a href="names-and-values.html#modinplace">modify-in-place</a> applies here as well. R creates a <strong>shallow</strong> copy of the list. Meaning
+the list object and its bindings are copied; however, the underlying values are not.</p>
+<p>In a deep copy, like prior to R 3.1.0, the underlying values are also copied.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># create a list named `l`</span></a>
+<a class="sourceLine" id="cb4-2" title="2">l &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, <span class="ot">TRUE</span>, <span class="kw">c</span>(<span class="st">&#39;Apple&#39;</span>,<span class="st">&#39;Broccoli&#39;</span>,<span class="st">&#39;Chowder&#39;</span>))</a>
+<a class="sourceLine" id="cb4-3" title="3"></a>
+<a class="sourceLine" id="cb4-4" title="4"><span class="co"># show the address of the third list element</span></a>
+<a class="sourceLine" id="cb4-5" title="5"><span class="kw">obj_addr</span>(l[[<span class="dv">3</span>]])</a>
+<a class="sourceLine" id="cb4-6" title="6"><span class="co">## [1] &quot;0x1956dea0&quot;</span></a>
+<a class="sourceLine" id="cb4-7" title="7"></a>
+<a class="sourceLine" id="cb4-8" title="8"><span class="co"># modify the third list element</span></a>
+<a class="sourceLine" id="cb4-9" title="9">l[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Appricot&#39;</span>,<span class="st">&#39;Basmati Rice&#39;</span>,<span class="st">&#39;Cheese&#39;</span>)</a>
+<a class="sourceLine" id="cb4-10" title="10"></a>
+<a class="sourceLine" id="cb4-11" title="11"><span class="co"># the third list element&#39;s address is changed</span></a>
+<a class="sourceLine" id="cb4-12" title="12"><span class="kw">obj_addr</span>(l[[<span class="dv">3</span>]])</a>
+<a class="sourceLine" id="cb4-13" title="13"><span class="co">## [1] &quot;0x196362d0&quot;</span></a></code></pre></div>
+<p>Use <code>lobstr::ref()</code> to see common values between lists:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># create a list object</span></a>
+<a class="sourceLine" id="cb5-2" title="2">listA &lt;-<span class="st"> </span><span class="kw">list</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)</a>
+<a class="sourceLine" id="cb5-3" title="3"></a>
+<a class="sourceLine" id="cb5-4" title="4"><span class="co"># create a new pointer to the same list object</span></a>
+<a class="sourceLine" id="cb5-5" title="5">listB &lt;-<span class="st"> </span>listA</a>
+<a class="sourceLine" id="cb5-6" title="6"></a>
+<a class="sourceLine" id="cb5-7" title="7"><span class="co"># modify the third list element of listB, creating a shallow copy of the list object </span></a>
+<a class="sourceLine" id="cb5-8" title="8">listB[[<span class="dv">3</span>]] &lt;-<span class="st"> </span><span class="dv">4</span></a>
+<a class="sourceLine" id="cb5-9" title="9"></a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="co"># ref() lists the address of each list element. Notice two values are still shared </span></a>
+<a class="sourceLine" id="cb5-11" title="11"><span class="co"># between `listA` and `listB`.</span></a>
+<a class="sourceLine" id="cb5-12" title="12"><span class="kw">ref</span>(listA, listB)</a>
+<a class="sourceLine" id="cb5-13" title="13"><span class="co">## o [1:0x1998c470] &lt;list&gt; </span></a>
+<a class="sourceLine" id="cb5-14" title="14"><span class="co">## +-[2:0x19841330] &lt;dbl&gt; </span></a>
+<a class="sourceLine" id="cb5-15" title="15"><span class="co">## +-[3:0x198412f8] &lt;dbl&gt; </span></a>
+<a class="sourceLine" id="cb5-16" title="16"><span class="co">## \-[4:0x198412c0] &lt;dbl&gt; </span></a>
+<a class="sourceLine" id="cb5-17" title="17"><span class="co">##  </span></a>
+<a class="sourceLine" id="cb5-18" title="18"><span class="co">## o [5:0x19a06bb0] &lt;list&gt; </span></a>
+<a class="sourceLine" id="cb5-19" title="19"><span class="co">## +-[2:0x19841330] </span></a>
+<a class="sourceLine" id="cb5-20" title="20"><span class="co">## +-[3:0x198412f8] </span></a>
+<a class="sourceLine" id="cb5-21" title="21"><span class="co">## \-[6:0x198411a8] &lt;dbl&gt;</span></a></code></pre></div>
+</div>
+<div id="data-frames" class="section level5 unnumbered">
+<h5>Data Frames</h5>
+<p>A data frame is simply a list where each element is a vector of the same length.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># create a data frame with three columns</span></a>
+<a class="sourceLine" id="cb6-2" title="2">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1 =</span> <span class="ot">TRUE</span>, </a>
+<a class="sourceLine" id="cb6-3" title="3">                 <span class="dt">col2 =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>, </a>
+<a class="sourceLine" id="cb6-4" title="4">                 <span class="dt">col3 =</span> <span class="kw">rep</span>(<span class="dt">x =</span> <span class="kw">c</span>(<span class="st">&#39;On&#39;</span>,<span class="st">&#39;Off&#39;</span>), </a>
+<a class="sourceLine" id="cb6-5" title="5">                            <span class="dt">length.out =</span> <span class="dv">10</span>))</a>
+<a class="sourceLine" id="cb6-6" title="6"></a>
+<a class="sourceLine" id="cb6-7" title="7"><span class="co"># show the address of the data frame and each element (i.e. column)</span></a>
+<a class="sourceLine" id="cb6-8" title="8"><span class="kw">ref</span>(df)</a>
+<a class="sourceLine" id="cb6-9" title="9"><span class="co">## o [1:0x1ac6acc8] &lt;df[,3]&gt; </span></a>
+<a class="sourceLine" id="cb6-10" title="10"><span class="co">## +-col1 = [2:0x1ac5a5b8] &lt;lgl&gt; </span></a>
+<a class="sourceLine" id="cb6-11" title="11"><span class="co">## +-col2 = [3:0x1ac4f6b8] &lt;int&gt; </span></a>
+<a class="sourceLine" id="cb6-12" title="12"><span class="co">## \-col3 = [4:0x1ac5a708] &lt;fct&gt;</span></a></code></pre></div>
+<p>When a <strong>column</strong> is modified only one element is copied:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># modify a column and note the addresses of the unchanged columns remain the same</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co"># because they point to the same objects as before</span></a>
+<a class="sourceLine" id="cb7-3" title="3">df<span class="op">$</span>col1 &lt;-<span class="st"> </span><span class="ot">FALSE</span>; <span class="kw">ref</span>(df)</a>
+<a class="sourceLine" id="cb7-4" title="4"><span class="co">## o [1:0x1afb0998] &lt;df[,3]&gt; </span></a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="co">## +-col1 = [2:0x1afa1c88] &lt;lgl&gt; </span></a>
+<a class="sourceLine" id="cb7-6" title="6"><span class="co">## +-col2 = [3:0x1ac4f6b8] &lt;int&gt; </span></a>
+<a class="sourceLine" id="cb7-7" title="7"><span class="co">## \-col3 = [4:0x1ac5a708] &lt;fct&gt;</span></a></code></pre></div>
+<p>This has important consequences for memory when you update <strong>rows</strong> of data where each
+element gets copied:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="co"># modify the first row of the data frame</span></a>
+<a class="sourceLine" id="cb8-2" title="2">df[<span class="dv">1</span>,] &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="ot">TRUE</span>, <span class="dv">0</span>, <span class="st">&#39;Off&#39;</span>)</a>
+<a class="sourceLine" id="cb8-3" title="3"></a>
+<a class="sourceLine" id="cb8-4" title="4"><span class="co"># *all* elements are copied to new addresses</span></a>
+<a class="sourceLine" id="cb8-5" title="5"><span class="kw">ref</span>(df)</a>
+<a class="sourceLine" id="cb8-6" title="6"><span class="co">## o [1:0x1b3b8c30] &lt;df[,3]&gt; </span></a>
+<a class="sourceLine" id="cb8-7" title="7"><span class="co">## +-col1 = [2:0x1b3b2920] &lt;chr&gt; </span></a>
+<a class="sourceLine" id="cb8-8" title="8"><span class="co">## +-col2 = [3:0x1b3c52a0] &lt;chr&gt; </span></a>
+<a class="sourceLine" id="cb8-9" title="9"><span class="co">## \-col3 = [4:0x1b3b4e10] &lt;fct&gt;</span></a></code></pre></div>
+</div>
+<div id="character-vectors" class="section level5 unnumbered">
+<h5>Character Vectors</h5>
+<p>R uses a <em>global string pool</em> to store unique character objects so they are not duplicated
+unnecessarily. Use the <code>character</code> argument to show their address in the global string pool
+with <code>lobstr::ref()</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># create a character vector</span></a>
+<a class="sourceLine" id="cb9-2" title="2">chr &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;Quarter&#39;</span>,</a>
+<a class="sourceLine" id="cb9-3" title="3">         <span class="st">&#39;Dime&#39;</span>,</a>
+<a class="sourceLine" id="cb9-4" title="4">         <span class="st">&#39;Nickle&#39;</span>,</a>
+<a class="sourceLine" id="cb9-5" title="5">         <span class="st">&#39;Penny&#39;</span>,</a>
+<a class="sourceLine" id="cb9-6" title="6">         <span class="st">&#39;Penny&#39;</span>)</a>
+<a class="sourceLine" id="cb9-7" title="7"></a>
+<a class="sourceLine" id="cb9-8" title="8"><span class="co"># show addresses in the global string pool. Notice the shared value for &#39;Penny&#39;</span></a>
+<a class="sourceLine" id="cb9-9" title="9"><span class="kw">ref</span>(chr, </a>
+<a class="sourceLine" id="cb9-10" title="10">    <span class="dt">character =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<pre><code>## o [1:0x168b9d70] &lt;chr&gt; 
+## +-[2:0x155131f0] &lt;string: &quot;Quarter&quot;&gt; 
+## +-[3:0x15513260] &lt;string: &quot;Dime&quot;&gt; 
+## +-[4:0x15513308] &lt;string: &quot;Nickle&quot;&gt; 
+## +-[5:0x155133b0] &lt;string: &quot;Penny&quot;&gt; 
+## \-[5:0x155133b0]</code></pre>
+</div>
+</div>
+<div id="modinplace" class="section level4 unnumbered">
+<h4>Modify-in-Place</h4>
+<p>There are two places where R will optimize memory by modfiying an object “in place”
+(i.e. does not make a copy).</p>
+<ol style="list-style-type: decimal">
+<li>objects with a single binding</li>
+</ol>
+<pre><code>&gt; hats &lt;- c(&#39;red&#39;,&#39;brown&#39;,&#39;blue&#39;)
+&gt; obj_addr(hats)
+[1] &quot;0x1d51fe614d8&quot;
+&gt; 
+&gt; hats[[1]] &lt;- &#39;orange&#39;
+&gt; obj_addr(hats)
+[1] &quot;0x1d51fe614d8&quot;
+
+# note this is output from the R Console. RStudio runs everything within an Environment
+# which breaks modify-in-place behavior</code></pre>
+<p>This is one reason why looping in R is inefficient, the user is unwittingly copying
+objects many times over:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># create a dataframe</span></a>
+<a class="sourceLine" id="cb12-2" title="2">df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(<span class="dt">col1 =</span> <span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>))</a>
+<a class="sourceLine" id="cb12-3" title="3"></a>
+<a class="sourceLine" id="cb12-4" title="4"><span class="co"># trace copies of this dataframe</span></a>
+<a class="sourceLine" id="cb12-5" title="5"><span class="kw">tracemem</span>(df)</a>
+<a class="sourceLine" id="cb12-6" title="6"><span class="co">## [1] &quot;&lt;0000000019643D48&gt;&quot;</span></a>
+<a class="sourceLine" id="cb12-7" title="7"></a>
+<a class="sourceLine" id="cb12-8" title="8"><span class="co"># use a for loop to increment the dataframe values</span></a>
+<a class="sourceLine" id="cb12-9" title="9"><span class="co"># R copies the object 12 times!!!</span></a>
+<a class="sourceLine" id="cb12-10" title="10"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">3</span>){</a>
+<a class="sourceLine" id="cb12-11" title="11">  df[[<span class="dv">1</span>]][i] &lt;-<span class="st"> </span>df[[<span class="dv">1</span>]][i] <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a>
+<a class="sourceLine" id="cb12-12" title="12">}</a>
+<a class="sourceLine" id="cb12-13" title="13"><span class="co">## tracemem[0x0000000019643d48 -&gt; 0x00000000198a52a8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-14" title="14"><span class="co">## tracemem[0x00000000198a52a8 -&gt; 0x00000000198a50e8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-15" title="15"><span class="co">## tracemem[0x00000000198a50e8 -&gt; 0x00000000198b55b8]: [[&lt;-.data.frame [[&lt;- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-16" title="16"><span class="co">## tracemem[0x00000000198b55b8 -&gt; 0x00000000198b5430]: [[&lt;-.data.frame [[&lt;- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-17" title="17"><span class="co">## tracemem[0x00000000198b5430 -&gt; 0x00000000198b52a8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-18" title="18"><span class="co">## tracemem[0x00000000198b52a8 -&gt; 0x00000000198b5158]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-19" title="19"><span class="co">## tracemem[0x00000000198b5158 -&gt; 0x00000000198b5078]: [[&lt;-.data.frame [[&lt;- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-20" title="20"><span class="co">## tracemem[0x00000000198b5078 -&gt; 0x00000000198b4ef0]: [[&lt;-.data.frame [[&lt;- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-21" title="21"><span class="co">## tracemem[0x00000000198b4ef0 -&gt; 0x00000000198b4d68]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-22" title="22"><span class="co">## tracemem[0x00000000198b4d68 -&gt; 0x00000000198b4c18]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-23" title="23"><span class="co">## tracemem[0x00000000198b4c18 -&gt; 0x00000000198b4b38]: [[&lt;-.data.frame [[&lt;- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local </span></a>
+<a class="sourceLine" id="cb12-24" title="24"><span class="co">## tracemem[0x00000000198b4b38 -&gt; 0x00000000198b49b0]: [[&lt;-.data.frame [[&lt;- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call &lt;Anonymous&gt; evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file &lt;Anonymous&gt; &lt;Anonymous&gt; do.call eval eval eval eval eval.parent local</span></a>
+<a class="sourceLine" id="cb12-25" title="25"></a>
+<a class="sourceLine" id="cb12-26" title="26"><span class="co"># turn of object memory trace</span></a>
+<a class="sourceLine" id="cb12-27" title="27"><span class="kw">untracemem</span>(df)</a></code></pre></div>
+<ol start="2" style="list-style-type: decimal">
+<li>Environments</li>
+</ol>
+<p>Environments are always modified in place and all objects within the environment
+keep the same reference.
+—
+#### Unbinding and Garbage Collector (GC) {-}</p>
+<p>The (GC) garbage collector deletes objects that are no longer used and requests
+more memory from the operating system as needed to create objects.</p>
+<p>For example:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># create three objects all bound to `x`</span></a>
+<a class="sourceLine" id="cb13-2" title="2">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span> </a>
+<a class="sourceLine" id="cb13-3" title="3">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&#39;one&#39;</span>,<span class="st">&#39;two&#39;</span>,<span class="st">&#39;three&#39;</span>)</a>
+<a class="sourceLine" id="cb13-4" title="4">x &lt;-<span class="st"> </span><span class="ot">TRUE</span></a>
+<a class="sourceLine" id="cb13-5" title="5"></a>
+<a class="sourceLine" id="cb13-6" title="6"><span class="co"># removing `x` causes GC to delete the three objects b/c they have no other bindings</span></a>
+<a class="sourceLine" id="cb13-7" title="7"><span class="kw">remove</span>(x)</a></code></pre></div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="advanced-r-2nd-ed-hadley-wickham.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="you-can-call-gc-yourself-with-basegc-but-the-user-should-not-ever-have-the-need-.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

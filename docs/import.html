@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.1 Markdown/bookdown tips | _main.utf8.md</title>
+  <title>Chapter 1 Import | _main.utf8.md</title>
   <meta name="description" content="" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.1 Markdown/bookdown tips | _main.utf8.md" />
+  <meta property="og:title" content="Chapter 1 Import | _main.utf8.md" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.1 Markdown/bookdown tips | _main.utf8.md" />
+  <meta name="twitter:title" content="Chapter 1 Import | _main.utf8.md" />
   
   
   
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="communicate.html"/>
-
+<link rel="prev" href="advanced-r.html"/>
+<link rel="next" href="tidy.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -230,283 +230,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="markdownbookdown-tips" class="section level2">
-<h2><span class="header-section-number">6.1</span> Markdown/bookdown tips</h2>
-<div id="syntax" class="section level3">
-<h3><span class="header-section-number">6.1.1</span> Syntax</h3>
-<div id="inline-formatting" class="section level4 unnumbered">
-<h4>Inline Formatting</h4>
-<table>
-<colgroup>
-<col width="33%" />
-<col width="33%" />
-<col width="33%" />
-</colgroup>
-<thead>
-<tr class="header">
-<th>Element</th>
-<th>Code</th>
-<th>Notes</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><em>Italic</em></td>
-<td><code>*Italic* or _Italic_</code></td>
-<td>single asterisks or underscores</td>
-</tr>
-<tr class="even">
-<td><strong>Bold</strong></td>
-<td><code>**Bold** or __Bold__</code></td>
-<td>double asterisks or underscores</td>
-</tr>
-<tr class="odd">
-<td><strong><em>Bold Italic</em></strong></td>
-<td><code>***Bold Italic***</code></td>
-<td>triple asterisks or underscores</td>
-</tr>
-<tr class="even">
-<td><strong>Underline</strong></td>
-<td><code>__Underline__</code></td>
-<td>two underscores</td>
-</tr>
-<tr class="odd">
-<td><del>Strike-through</del></td>
-<td><code>~~Strike-through~~</code></td>
-<td>double tildes</td>
-</tr>
-<tr class="even">
-<td>Sub<sub>script</sub></td>
-<td><code>Sub~script~</code></td>
-<td>single tildes</td>
-</tr>
-<tr class="odd">
-<td>Super<sup>script</sup></td>
-<td><code>Super^script^</code></td>
-<td>single carets</td>
-</tr>
-<tr class="even">
-<td><span class="math inline">\(\LaTeX\)</span></td>
-<td><code>$\LaTeX$</code></td>
-<td>enclose syntax with <code>$</code></td>
-</tr>
-<tr class="odd">
-<td><code>inline_code()</code></td>
-<td><code>`inline_code()`</code></td>
-<td>single back-ticks</td>
-</tr>
-<tr class="even">
-<td>R, Inline, Code</td>
-<td><code>`r c('R','Inline','Code')`</code></td>
-<td>single back-ticks beginning r <em>space</em></td>
-</tr>
-<tr class="odd">
-<td><a href="https://www.google.com">Hyperlink</a></td>
-<td><code>[Hyperlink](https://www.google.com)</code></td>
-<td><code>[text](link)</code></td>
-</tr>
-<tr class="even">
-<td><img src="Rlogo.png" alt="R Logo" /></td>
-<td><code>![R Logo](./Rlogo.png)</code></td>
-<td><code>![text](link)</code></td>
-</tr>
-<tr class="odd">
-<td>Footnote<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></td>
-<td><code>^[Example footnote.]</code></td>
-<td><span style="color: red;">requires a </span> <code>.</code></td>
-</tr>
-<tr class="even">
-<td><span class="citation">Citation (<a href="#ref-example">2020</a>)</span></td>
-<td><code>@example</code></td>
-<td>@tag ref to BibTeX citation</td>
-</tr>
-<tr class="odd">
-<td><span class="citation">(Citation <a href="#ref-example">2020</a>)</span></td>
-<td><code>[@example]</code></td>
-<td>alternative style</td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="section-headers" class="section level4 unnumbered">
-<h4>Section Headers</h4>
-<pre><code># level 1 header
-## level 2 header
-### level 3 header etc...</code></pre>
-<p>Add <code>{-}</code> after the header to remove section numbering:</p>
-<pre><code># Preface {-}</code></pre>
-</div>
-<div id="unordered-lists" class="section level4 unnumbered">
-<h4>Unordered Lists</h4>
-<ul>
-<li>item 1</li>
-<li>item 2
-<ul>
-<li>sub-item 1</li>
-</ul></li>
-</ul>
-<p>Unordered list items start with <code>*</code>, <code>-</code>, or <code>+</code>; and can be nested by indenting the next item by four spaces:</p>
-<pre><code>* item 1
-* item 2
-    * sub-item 1</code></pre>
-</div>
-<div id="ordered-lists" class="section level4 unnumbered">
-<h4>Ordered lists</h4>
-<ol style="list-style-type: decimal">
-<li>item 1</li>
-<li>item 2
-<ol style="list-style-type: decimal">
-<li>sub-item 1</li>
-</ol></li>
-</ol>
-<p>Ordered lists begin with a number and a period. Same indenting rules as unordered lists:</p>
-<pre><code>1. item 1
-2. item 2
-    1. sub-item 1</code></pre>
-</div>
-<div id="block-quotes" class="section level4 unnumbered">
-<h4>Block Quotes</h4>
-<blockquote>
-<p>"You miss 100% of the shots you don’t take.</p>
-<p>— Wayne Gretzky"</p>
-<div style="text-align: right">
-— Michael Scott
-</div>
-</blockquote>
-<p>Block quotes begin with a <code>&gt;</code>. You can use markdown formatting or HTML tags to right align the author:</p>
-<pre><code>&gt; &quot;You miss 100% of the shots you don&#39;t take.
-&gt;
-&gt; --- Wayne Gretzky&quot;
-&gt;
-&gt; &lt;div style=&quot;text-align: right&quot;&gt; --- Michael Scott&lt;/div&gt;</code></pre>
-</div>
-<div id="code-blocks" class="section level4 unnumbered">
-<h4>Code Blocks</h4>
-<pre><code>    ```
-    Use three back ticks to display text without markdown formatting.
-    ```</code></pre>
-</div>
-<div id="tables" class="section level4">
-<h4><span class="header-section-number">6.1.1.1</span> Tables</h4>
-<div id="grid-tables" class="section level5">
-<h5><span class="header-section-number">6.1.1.1.1</span> Grid Tables</h5>
-<p>Basic tables can be used by aligning <code>+</code>,<code>-</code>, &amp; <code>|</code> in a grid as below. One
-advantage is the ability to put more than one markdown element in a cell. No
-alignment options are available and you may have to reformat your table manually.</p>
-<pre><code>+------------+--------+--------+
-|Date        |Event   |   Times|
-+------------+--------+--------+
-|30-Apr-2020 |Swimming|* 3:00pm|
-|            |        |* 4:30pm|
-+------------+--------+--------+</code></pre>
-<table style="width:43%;">
-<colgroup>
-<col width="18%" />
-<col width="12%" />
-<col width="12%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Date</td>
-<td>Event</td>
-<td>Times</td>
-</tr>
-<tr class="even">
-<td>30-Apr-2020</td>
-<td>Swimming</td>
-<td><ul>
-<li>3:00pm</li>
-<li>4:30pm</li>
-</ul></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div id="pipe-tables" class="section level5">
-<h5><span class="header-section-number">6.1.1.1.2</span> Pipe Tables</h5>
-</div>
-</div>
-<div id="horizontal-rules" class="section level4 unnumbered">
-<h4>Horizontal Rules</h4>
-<p>Three or more <code>***</code>, <code>---</code>, or <code>___</code> will produce a horizontal rule; as will the <code>&lt;hr&gt;</code> HTML tag.</p>
-</div>
-</div>
-<div id="cache-large-code-chunks" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> Cache large code chunks</h3>
-<p><code>```{r chunk-id, cache=TRUE}</code></p>
-</div>
-<div id="chunk-options" class="section level3">
-<h3><span class="header-section-number">6.1.3</span> Chunk Options</h3>
-<div id="collapse" class="section level4">
-<h4><span class="header-section-number">6.1.3.1</span> Collapse</h4>
-<p>collapse=TRUE results in</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; <span class="kw">print</span>(x)</a>
-<a class="sourceLine" id="cb56-2" title="2"><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></a></code></pre></div>
-<p>rather than</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; <span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
-</div>
-<div id="error" class="section level4">
-<h4><span class="header-section-number">6.1.3.2</span> Error</h4>
-<p>error=TRUE</p>
-</div>
-</div>
-<div id="resources" class="section level3 unnumbered">
-<h3>Resources</h3>
-<p><a href="https://bookdown.org/yihui/bookdown">Bookdown: Authoring Books with R Markdown</a> by its creator, Yihui Xie.</p>
-<p><a href="https://pandoc.org/">Pandoc</a></p>
-</div>
-<div id="chapter-session-info" class="section level3 unnumbered">
-<h3>Chapter Session Info</h3>
-<pre><code>## R version 3.6.1 (2019-07-05)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## loaded via a namespace (and not attached):
-##  [1] compiler_3.6.1  magrittr_1.5    bookdown_0.16   tools_3.6.1    
-##  [5] htmltools_0.4.0 yaml_2.2.0      Rcpp_1.0.1      stringi_1.4.3  
-##  [9] rmarkdown_1.13  knitr_1.23      stringr_1.4.0   xfun_0.8       
-## [13] digest_0.6.20   rlang_0.4.5     evaluate_0.14</code></pre>
+<div id="import" class="section level1">
+<h1><span class="header-section-number">Chapter 1</span> Import</h1>
 
-<div id="refs" class="references">
-<div>
-<p>Citation. 2020. “BibTeX Citation Example.”</p>
-</div>
-</div>
-</div>
-</div>
-<!-- </div> -->
-
-
-
-
-
-
-
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-example">
-<p>Citation. 2020. “BibTeX Citation Example.”</p>
-</div>
-</div>
-<div class="footnotes">
-<hr />
-<ol start="2">
-<li id="fn2"><p>Example footnote.<a href="markdownbookdown-tips.html#fnref2" class="footnote-back">↩</a></p></li>
-</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="communicate.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="advanced-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="tidy.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -1,5 +1,4 @@
 ---
-subtitle: "Data Analytics and Statistical Learning Repository in R, Python, SQL, Markdown, LaTex, & Git(Hub)"
 author: "Chase Hickman"
 site: bookdown::bookdown_site
 documentclass: book
@@ -10,23 +9,42 @@ link-citations: true
 
 # Preface {-}
 
-> "*Docendo discimus* (by teaching, we learn)"
-> 
-> <div style="text-align: right">---Seneca the Younger (c. 4 BC – 65 AD) </div>
+>docendo discimus *(by teaching we learn)* <div style="text-align: right">—Seneca the Younger (c. 4 BC – 65 AD)</div>
 
-This is my personal repository for collected insights, routines, code, analyses, 
-links etc. I find useful in my work.
+This is a personal repository for digesting concepts and practicing critical storytelling related to analyzing data,
+mainly using the [R Project for Statistical Computing](https://www.r-project.org/).
 
-# Liscensing {-}
+# Introduction {-}
+
+I intend to follow a project-oriented workflow for organizing this information:
+
+![](data-science-workflow.png)
+
+* Programming
+    
+* Import
+    
+* Tidy
+    
+* Transform
+    
+* Visualise
+    
+* Statistics
+    
+* Communicate
+    
+
+## Licensing {-}
 
 I am publishing this book with 
-*[no license](https://choosealicense.com/no-permission/)*. Which means:
+[no license](https://choosealicense.com/no-permission/), which means:
 
 > When you make a creative work (which includes code), the work is under 
 exclusive copyright by default. Unless you include a license that specifies 
 otherwise, nobody else can copy, distribute, or modify your work without being 
 at risk of take-downs, shake-downs, or litigation.
 
-# About the Author {-}
+## About the Author {-}
 
-Rawr. I'm a dinosaur.
+I am the lead Data Analytics Consultant in HR for the University of Missouri System. I earned my BFA summa cum laude from the University of Missouri in 2009, with a minor in Art History; and have been employed by the University since 2009. 

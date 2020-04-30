@@ -1,0 +1,267 @@
+## Advanced R {-}
+
+[Advanced R](https://adv-r.hadley.nz/) 2nd ed. Hadley Wickham
+
+### Names and Values
+
+#### Binding {-}
+In R, names are assigned a value (e.g. a vector doesn't have a name, rather, a name(s) points to a vector). The actual address of an object is exposed by `lobstr::obj_addr()`.
+```{r include=FALSE}
+library(lobstr)
+```
+```{r echo=TRUE, collapse=TRUE}
+x <- 1:10
+obj_addr(x)
+
+# notice x and y are pointers to the same object
+y <- x
+obj_addr(y)
+
+# this applies to function arguments in their environment as well
+fn <- function(z){
+  z
+}
+# fn() returns the argument z at the same address
+obj_addr(fn(x))
+```
+
+#### Syntactic Names {-}
+
+Names in R can be letters, numbers, `.` or `_`; but cannot start with a number or `_` or contain `?Reserved` words.
+
+```{r echo=TRUE, collapse=TRUE, error=TRUE}
+# assigning a vector a name startign with `_` throws an error
+_x <- 1:10
+```
+
+
+#### Copy-on-Modify {-#copyonmod}
+
+R objects are generally immutable. A new copy is made when you modify an object. There are two [Modify-in-Place](#modinplace) exceptions.
+
+```{r, echo=TRUE, collapse=TRUE}
+# create vector x
+x <- 1:10
+obj_addr(x)
+
+# modify first value in x
+x[[1]] <- 0
+
+# note x now points to a new object
+obj_addr(x)
+```
+
+
+##### Trace Copying of Objects {-}
+
+`base::tracemem()` will mark an object and print a message whenever it is copied. This is
+a major cause of hard-to-predict memory usage.
+
+```{r echo=TRUE, eval=FALSE, collapse=TRUE}
+# tell R to trace copies of object reference `x`
+tracemem(x = x)
+
+# modify the first element in vector `x`
+# R prints a tracemem message to show the object is copied to a new address
+x[[1]] <- 2
+#> tracemem[0x000002379ca5a190 -> 0x000002379cd8dbb0]:
+
+# tell R to stop tracing this object
+base::untracemem(x = x)
+```
+
+##### List Objects {-#lobjects}
+
+Just like variables, each element of a list also points to a value. [Copy-on-modify](#copyonmod) and [modify-in-place](#modinplace) applies here as well. R creates a **shallow** copy of the list. Meaning 
+the list object and its bindings are copied; however, the underlying values are not.
+
+In a deep copy, like prior to R 3.1.0, the underlying values are also copied.
+
+```{r echo=TRUE, collapse=TRUE, }
+# create a list named `l`
+l <- list(1:10, TRUE, c('Apple','Broccoli','Chowder'))
+
+# show the address of the third list element
+obj_addr(l[[3]])
+
+# modify the third list element
+l[[3]] <- c('Appricot','Basmati Rice','Cheese')
+
+# the third list element's address is changed
+obj_addr(l[[3]])
+
+```
+
+Use `lobstr::ref()` to see common values between lists:
+
+```{r echo=TRUE, collapse=TRUE}
+# create a list object
+listA <- list(1,2,3)
+
+# create a new pointer to the same list object
+listB <- listA
+
+# modify the third list element of listB, creating a shallow copy of the list object 
+listB[[3]] <- 4
+
+# ref() lists the address of each list element. Notice two values are still shared 
+# between `listA` and `listB`.
+ref(listA, listB)
+
+```
+
+##### Data Frames {-}
+
+A data frame is simply a list where each element is a vector of the same length.
+
+```{r each=TRUE, collapse=TRUE}
+# create a data frame with three columns
+df <- data.frame(col1 = TRUE, 
+                 col2 = 1:10, 
+                 col3 = rep(x = c('On','Off'), 
+                            length.out = 10))
+
+# show the address of the data frame and each element (i.e. column)
+ref(df)
+
+
+```
+
+When a **column** is modified only one element is copied:
+
+```{r echo=TRUE, collapse=TRUE}
+# modify a column and note the addresses of the unchanged columns remain the same
+# because they point to the same objects as before
+df$col1 <- FALSE; ref(df)
+```
+
+This has important consequences for memory when you update **rows** of data where each 
+element gets copied:
+
+```{r echo=TRUE, collapse=TRUE}
+# modify the first row of the data frame
+df[1,] <- c(TRUE, 0, 'Off')
+
+# *all* elements are copied to new addresses
+ref(df)
+
+```
+
+##### Character Vectors {-}
+
+R uses a *global string pool* to store unique character objects so they are not duplicated 
+unnecessarily. Use the `character` argument to show their address in the global string pool 
+with `lobstr::ref()`:
+
+```{r}
+# create a character vector
+chr <- c('Quarter',
+         'Dime',
+         'Nickle',
+         'Penny',
+         'Penny')
+
+# show addresses in the global string pool. Notice the shared value for 'Penny'
+ref(chr, 
+    character = TRUE)
+
+```
+
+#### Object Size {-}
+
+`lobstr::obj_size()` shows the amount of memory an object takes, while `obj_sizes()`
+breaks down multiple objects into their individual contribution to *total* memory.
+
+Due to binding names, global string pools, and ALTREP (alternate representation where some vectors
+are stored in a compact manor; e.g. 1:1000 only stores the first and last numbers, not 1,000 numbers)
+the size of objects may surprise you.
+
+```{r echo=TRUE, collapse=TRUE}
+# create a length one chracter vector and a length 100 character vector
+x <- 'Charlie'
+y <- rep(x = 'Charlie', times = 100)
+
+# y is only ~8x the size of x, not 100x
+obj_size(x); obj_size(y)
+
+
+z <- 1:10
+
+# create a list with one element `z`
+list1 <- list(z)
+# create a list with three elements, all `z`
+list2 <- list(z, z, z)
+
+# list2 only contributes an extra 80 Bytes to the total memory between the two
+obj_sizes(list1, list2)
+
+```
+
+
+#### Modify-in-Place {-#modinplace}
+
+There are two places where R will optimize memory by modfiying an object "in place"
+(i.e. does not make a copy).
+
+1. objects with a single binding
+
+```
+> hats <- c('red','brown','blue')
+> obj_addr(hats)
+[1] "0x1d51fe614d8"
+> 
+> hats[[1]] <- 'orange'
+> obj_addr(hats)
+[1] "0x1d51fe614d8"
+
+# note this is output from the R Console. RStudio runs everything within an Environment
+# which breaks modify-in-place behavior
+```
+This is one reason why looping in R is inefficient, the user is unwittingly copying 
+objects many times over:
+
+```{r echo=TRUE, collapse=TRUE}
+# create a dataframe
+df <- data.frame(col1 = c(1:3))
+
+# trace copies of this dataframe
+tracemem(df)
+
+# use a for loop to increment the dataframe values
+# R copies the object 12 times!!!
+for (i in 1:3){
+  df[[1]][i] <- df[[1]][i] + 1
+}
+
+# turn of object memory trace
+untracemem(df)
+```
+
+2. Environments
+
+Environments are always modified in place and all objects within the environment
+keep the same reference.
+
+#### Unbinding and Garbage Collector (GC) {-}
+
+The (GC) garbage collector deletes objects that are no longer used and requests
+more memory from the operating system as needed to create objects.
+
+For example:
+```{r echo=TRUE, collapse=TRUE}
+# create three objects all bound to `x`
+x <- 1:10 
+x <- c('one','two','three')
+x <- TRUE
+
+# removing `x` causes GC to delete the three objects b/c they have no other bindings
+remove(x)
+```
+You can call GC yourself with `base::gc()`, but the user should not ever have the need.
+
+#### Session Info {-}
+
+```{r echo=FALSE}
+print(x = sessionInfo(), 
+      local = F)
+```
