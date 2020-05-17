@@ -1,22 +1,31 @@
-## Advanced R {-}
 
-[Advanced R](https://adv-r.hadley.nz/) 2nd ed. Hadley Wickham
+## Advanced R{}
 
-### Names and Values
+[Advanced R](https://adv-r.hadley.nz/) 2nd ed. Hadley Wickham  
 
-#### Binding {-}
+*Selected Chapters*  
+[Names and Values](#arnandv)  
+[Vectors](#arv)  
+[Subsetting](#arsub)  
+[Control Flow](#arconflow)  
+[Functions](#arfunc)  
+[Functionals](#arfunctionals)  
+
+### Names and Values{#arnandv}
+
+#### Binding{#arbinding}
 In R, names are assigned a value (e.g. a vector doesn't have a name, rather, a name(s) points to a vector). The actual address of an object is exposed by `lobstr::obj_addr()`.
 
 
 ```r
 x <- 1:10
 obj_addr(x)
-## [1] "0x16b0fd08"
+## [1] "0x1517f8b0"
 
 # notice x and y are pointers to the same object
 y <- x
 obj_addr(y)
-## [1] "0x16b0fd08"
+## [1] "0x1517f8b0"
 
 # this applies to function arguments in their environment as well
 fn <- function(z){
@@ -24,10 +33,10 @@ fn <- function(z){
 }
 # fn() returns the argument z at the same address
 obj_addr(fn(x))
-## [1] "0x16b0fd08"
+## [1] "0x1517f8b0"
 ```
 
-#### Syntactic Names {-}
+#### Syntactic Names{#arsyntacticnames}
 
 Names in R can be letters, numbers, `.` or `_`; but cannot start with a number or `_` or contain `?Reserved` words.
 
@@ -42,27 +51,27 @@ _x <- 1:10
 ```
 
 
-#### Copy-on-Modify {-#copyonmod}
+#### Copy-on-Modify {#arcopyonmod}
 
-R objects are generally immutable. A new copy is made when you modify an object. There are two [Modify-in-Place](#modinplace) exceptions.
+R objects are generally immutable. A new copy is made when you modify an object. There are two [Modify-in-Place](#armodinplace) exceptions.
 
 
 ```r
 # create vector x
 x <- 1:10
 obj_addr(x)
-## [1] "0x18feee48"
+## [1] "0x180fe9d8"
 
 # modify first value in x
 x[[1]] <- 0
 
 # note x now points to a new object
 obj_addr(x)
-## [1] "0x1905cd10"
+## [1] "0x1806d148"
 ```
 
 
-##### Trace Copying of Objects {-}
+##### Trace Copying of Objects {#artracecopy}
 
 `base::tracemem()` will mark an object and print a message whenever it is copied. This is
 a major cause of hard-to-predict memory usage.
@@ -81,9 +90,9 @@ x[[1]] <- 2
 base::untracemem(x = x)
 ```
 
-##### List Objects {-#lobjects}
+##### List Objects {#arlobjects}
 
-Just like variables, each element of a list also points to a value. [Copy-on-modify](#copyonmod) and [modify-in-place](#modinplace) applies here as well. R creates a **shallow** copy of the list. Meaning 
+Just like variables, each element of a list also points to a value. [Copy-on-modify](#arcopyonmod) and [modify-in-place](#armodinplace) applies here as well. R creates a **shallow** copy of the list. Meaning 
 the list object and its bindings are copied; however, the underlying values are not.
 
 In a deep copy, like prior to R 3.1.0, the underlying values are also copied.
@@ -95,14 +104,14 @@ l <- list(1:10, TRUE, c('Apple','Broccoli','Chowder'))
 
 # show the address of the third list element
 obj_addr(l[[3]])
-## [1] "0x1955d5c0"
+## [1] "0x18641c28"
 
 # modify the third list element
 l[[3]] <- c('Appricot','Basmati Rice','Cheese')
 
 # the third list element's address is changed
 obj_addr(l[[3]])
-## [1] "0x196259f0"
+## [1] "0x186db4c0"
 ```
 
 Use `lobstr::ref()` to see common values between lists:
@@ -121,18 +130,18 @@ listB[[3]] <- 4
 # ref() lists the address of each list element. Notice two values are still shared 
 # between `listA` and `listB`.
 ref(listA, listB)
-## o [1:0x1997dab0] <list> 
-## +-[2:0x19812988] <dbl> 
-## +-[3:0x19812950] <dbl> 
-## \-[4:0x19812918] <dbl> 
+## o [1:0x18ad0ff0] <list> 
+## +-[2:0x189423a8] <dbl> 
+## +-[3:0x18942370] <dbl> 
+## \-[4:0x18942338] <dbl> 
 ##  
-## o [5:0x199f43b0] <list> 
-## +-[2:0x19812988] 
-## +-[3:0x19812950] 
-## \-[6:0x19830b20] <dbl>
+## o [5:0x18b87d90] <list> 
+## +-[2:0x189423a8] 
+## +-[3:0x18942370] 
+## \-[6:0x18942220] <dbl>
 ```
 
-##### Data Frames {-}
+##### Data Frames {#ardataframes}
 
 A data frame is simply a list where each element is a vector of the same length.
 
@@ -146,10 +155,10 @@ df <- data.frame(col1 = TRUE,
 
 # show the address of the data frame and each element (i.e. column)
 ref(df)
-## o [1:0x1ac64988] <df[,3]> 
-## +-col1 = [2:0x1ac487b0] <lgl> 
-## +-col2 = [3:0x1ac40cd0] <int> 
-## \-col3 = [4:0x1ac48900] <fct>
+## o [1:0x195b9330] <df[,3]> 
+## +-col1 = [2:0x19580628] <lgl> 
+## +-col2 = [3:0x195aaaf0] <int> 
+## \-col3 = [4:0x19580778] <fct>
 ```
 
 When a **column** is modified only one element is copied:
@@ -159,10 +168,10 @@ When a **column** is modified only one element is copied:
 # modify a column and note the addresses of the unchanged columns remain the same
 # because they point to the same objects as before
 df$col1 <- FALSE; ref(df)
-## o [1:0x1afa49e0] <df[,3]> 
-## +-col1 = [2:0x1af8fe80] <lgl> 
-## +-col2 = [3:0x1ac40cd0] <int> 
-## \-col3 = [4:0x1ac48900] <fct>
+## o [1:0x198fd0d8] <df[,3]> 
+## +-col1 = [2:0x198b3110] <lgl> 
+## +-col2 = [3:0x195aaaf0] <int> 
+## \-col3 = [4:0x19580778] <fct>
 ```
 
 This has important consequences for memory when you update **rows** of data where each 
@@ -175,13 +184,13 @@ df[1,] <- c(TRUE, 0, 'Off')
 
 # *all* elements are copied to new addresses
 ref(df)
-## o [1:0x1b3a8ef0] <df[,3]> 
-## +-col1 = [2:0x1b3a0d30] <chr> 
-## +-col2 = [3:0x1b3b2b40] <chr> 
-## \-col3 = [4:0x1b3a4fe0] <fct>
+## o [1:0x15fded80] <df[,3]> 
+## +-col1 = [2:0x160c22b0] <chr> 
+## +-col2 = [3:0x158b5f90] <chr> 
+## \-col3 = [4:0x160189b8] <fct>
 ```
 
-##### Character Vectors {-}
+##### Character Vectors {#archarvar}
 
 R uses a *global string pool* to store unique character objects so they are not duplicated 
 unnecessarily. Use the `character` argument to show their address in the global string pool 
@@ -199,18 +208,15 @@ chr <- c('Quarter',
 # show addresses in the global string pool. Notice the shared value for 'Penny'
 ref(chr, 
     character = TRUE)
+## o [1:0x17e3a7f8] <chr> 
+## +-[2:0x15cd8930] <string: "Quarter"> 
+## +-[3:0x15cd88c0] <string: "Dime"> 
+## +-[4:0x15cd8818] <string: "Nickle"> 
+## +-[5:0x15cd87a8] <string: "Penny"> 
+## \-[5:0x15cd87a8]
 ```
 
-```
-## o [1:0x14306490] <chr> 
-## +-[2:0x15513a70] <string: "Quarter"> 
-## +-[3:0x15513ae0] <string: "Dime"> 
-## +-[4:0x15513b88] <string: "Nickle"> 
-## +-[5:0x15513bf8] <string: "Penny"> 
-## \-[5:0x15513bf8]
-```
-
-#### Object Size {-}
+#### Object Size {#arobjsize}
 
 `lobstr::obj_size()` shows the amount of memory an object takes, while `obj_sizes()`
 breaks down multiple objects into their individual contribution to *total* memory.
@@ -245,7 +251,7 @@ obj_sizes(list1, list2)
 ```
 
 
-#### Modify-in-Place {-#modinplace}
+#### Modify-in-Place {#armodinplace}
 
 There are two places where R will optimize memory by modfiying an object "in place"
 (i.e. does not make a copy).
@@ -274,25 +280,25 @@ df <- data.frame(col1 = c(1:3))
 
 # trace copies of this dataframe
 tracemem(df)
-## [1] "<00000000196335A8>"
+## [1] "<00000000187C6918>"
 
 # use a for loop to increment the dataframe values
 # R copies the object 12 times!!!
 for (i in 1:3){
   df[[1]][i] <- df[[1]][i] + 1
 }
-## tracemem[0x00000000196335a8 -> 0x0000000019892be8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x0000000019892be8 -> 0x0000000019892a28]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x0000000019892a28 -> 0x00000000198a4e18]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a4e18 -> 0x00000000198a4c90]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a4c90 -> 0x00000000198a4b08]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a4b08 -> 0x00000000198a49b8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a49b8 -> 0x00000000198a48d8]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a48d8 -> 0x00000000198a4750]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a4750 -> 0x00000000198a45c8]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a45c8 -> 0x00000000198a4478]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a4478 -> 0x00000000198a4398]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
-## tracemem[0x00000000198a4398 -> 0x00000000198a4210]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local
+## tracemem[0x00000000187c6918 -> 0x0000000018a09a00]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a09a00 -> 0x0000000018a09840]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a09840 -> 0x0000000018a19d10]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a19d10 -> 0x0000000018a19b88]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a19b88 -> 0x0000000018a19a00]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a19a00 -> 0x0000000018a198b0]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a198b0 -> 0x0000000018a197d0]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a197d0 -> 0x0000000018a19648]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a19648 -> 0x0000000018a194c0]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a194c0 -> 0x0000000018a19370]: eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a19370 -> 0x0000000018a19290]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local 
+## tracemem[0x0000000018a19290 -> 0x0000000018a19108]: [[<-.data.frame [[<- eval eval withVisible withCallingHandlers handle timing_fn evaluate_call <Anonymous> evaluate in_dir block_exec call_block process_group.block process_group withCallingHandlers process_file <Anonymous> <Anonymous> do.call eval eval eval eval eval.parent local
 
 # turn of object memory trace
 untracemem(df)
@@ -303,7 +309,7 @@ untracemem(df)
 Environments are always modified in place and all objects within the environment
 keep the same reference.
 
-#### Unbinding and Garbage Collector (GC) {-}
+#### Unbinding and Garbage Collector (GC) {#argc}
 
 The (GC) garbage collector deletes objects that are no longer used and requests
 more memory from the operating system as needed to create objects.
@@ -320,27 +326,3 @@ x <- TRUE
 remove(x)
 ```
 You can call GC yourself with `base::gc()`, but the user should not ever have the need.
-
-#### Session Info {-}
-
-
-```
-## R version 3.6.1 (2019-07-05)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-## [1] lobstr_1.1.1
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.1      bookdown_0.16   digest_0.6.20   crayon_1.3.4   
-##  [5] magrittr_1.5    evaluate_0.14   pillar_1.4.2    rlang_0.4.5    
-##  [9] stringi_1.4.3   vctrs_0.2.4     rmarkdown_1.13  tools_3.6.1    
-## [13] stringr_1.4.0   xfun_0.8        yaml_2.2.0      compiler_3.6.1 
-## [17] htmltools_0.4.0 knitr_1.23
-```

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6.1 Markdown/bookdown tips | _main.utf8.md</title>
+  <title>7.1 Markdown/bookdown tips | _main.utf8.md</title>
   <meta name="description" content="" />
   <meta name="generator" content="bookdown 0.16 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6.1 Markdown/bookdown tips | _main.utf8.md" />
+  <meta property="og:title" content="7.1 Markdown/bookdown tips | _main.utf8.md" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6.1 Markdown/bookdown tips | _main.utf8.md" />
+  <meta name="twitter:title" content="7.1 Markdown/bookdown tips | _main.utf8.md" />
   
   
   
@@ -52,25 +52,26 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -79,9 +80,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -131,84 +132,226 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
-<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a><ul>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a>
+<ul>
 <li class="chapter" data-level="" data-path="licensing.html"><a href="licensing.html"><i class="fa fa-check"></i>Licensing</a></li>
 <li class="chapter" data-level="" data-path="about-the-author.html"><a href="about-the-author.html"><i class="fa fa-check"></i>About the Author</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i>Programming</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html"><i class="fa fa-check"></i>Advanced R</a><ul>
-<li class="chapter" data-level="0.0.1" data-path="advanced-r.html"><a href="advanced-r.html#names-and-values"><i class="fa fa-check"></i><b>0.0.1</b> Names and Values</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#binding"><i class="fa fa-check"></i>Binding</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#syntactic-names"><i class="fa fa-check"></i>Syntactic Names</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#copyonmod"><i class="fa fa-check"></i>Copy-on-Modify</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#trace-copying-of-objects"><i class="fa fa-check"></i>Trace Copying of Objects</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#lobjects"><i class="fa fa-check"></i>List Objects</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#data-frames"><i class="fa fa-check"></i>Data Frames</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#character-vectors"><i class="fa fa-check"></i>Character Vectors</a></li>
+<li class="chapter" data-level="1" data-path="programming.html"><a href="programming.html"><i class="fa fa-check"></i><b>1</b> Programming</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="advanced-r.html"><a href="advanced-r.html"><i class="fa fa-check"></i><b>1.1</b> Advanced R</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="advanced-r.html"><a href="advanced-r.html#arnandv"><i class="fa fa-check"></i><b>1.1.1</b> Names and Values</a>
+<ul>
+<li class="chapter" data-level="1.1.1.1" data-path="advanced-r.html"><a href="advanced-r.html#arbinding"><i class="fa fa-check"></i><b>1.1.1.1</b> Binding</a></li>
+<li class="chapter" data-level="1.1.1.2" data-path="advanced-r.html"><a href="advanced-r.html#arsyntacticnames"><i class="fa fa-check"></i><b>1.1.1.2</b> Syntactic Names</a></li>
+<li class="chapter" data-level="1.1.1.3" data-path="advanced-r.html"><a href="advanced-r.html#arcopyonmod"><i class="fa fa-check"></i><b>1.1.1.3</b> Copy-on-Modify</a>
+<ul>
+<li class="chapter" data-level="1.1.1.3.1" data-path="advanced-r.html"><a href="advanced-r.html#artracecopy"><i class="fa fa-check"></i><b>1.1.1.3.1</b> Trace Copying of Objects</a></li>
+<li class="chapter" data-level="1.1.1.3.2" data-path="advanced-r.html"><a href="advanced-r.html#arlobjects"><i class="fa fa-check"></i><b>1.1.1.3.2</b> List Objects</a></li>
+<li class="chapter" data-level="1.1.1.3.3" data-path="advanced-r.html"><a href="advanced-r.html#ardataframes"><i class="fa fa-check"></i><b>1.1.1.3.3</b> Data Frames</a></li>
+<li class="chapter" data-level="1.1.1.3.4" data-path="advanced-r.html"><a href="advanced-r.html#archarvar"><i class="fa fa-check"></i><b>1.1.1.3.4</b> Character Vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#object-size"><i class="fa fa-check"></i>Object Size</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#modinplace"><i class="fa fa-check"></i>Modify-in-Place</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#unbinding-and-garbage-collector-gc"><i class="fa fa-check"></i>Unbinding and Garbage Collector (GC)</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#session-info"><i class="fa fa-check"></i>Session Info</a></li>
+<li class="chapter" data-level="1.1.1.4" data-path="advanced-r.html"><a href="advanced-r.html#arobjsize"><i class="fa fa-check"></i><b>1.1.1.4</b> Object Size</a></li>
+<li class="chapter" data-level="1.1.1.5" data-path="advanced-r.html"><a href="advanced-r.html#armodinplace"><i class="fa fa-check"></i><b>1.1.1.5</b> Modify-in-Place</a></li>
+<li class="chapter" data-level="1.1.1.6" data-path="advanced-r.html"><a href="advanced-r.html#argc"><i class="fa fa-check"></i><b>1.1.1.6</b> Unbinding and Garbage Collector (GC)</a></li>
 </ul></li>
-<li class="chapter" data-level="0.0.2" data-path="advanced-r.html"><a href="advanced-r.html#vectors"><i class="fa fa-check"></i><b>0.0.2</b> Vectors</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#atomic-vectors"><i class="fa fa-check"></i>Atomic Vectors</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#types"><i class="fa fa-check"></i>Types</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#combine-scalars"><i class="fa fa-check"></i>Combine scalars</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#missing-values"><i class="fa fa-check"></i>Missing values</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#testing-and-coercing-vectors"><i class="fa fa-check"></i>Testing and coercing vectors</a></li>
+<li class="chapter" data-level="1.1.2" data-path="advanced-r.html"><a href="advanced-r.html#arv"><i class="fa fa-check"></i><b>1.1.2</b> Vectors</a>
+<ul>
+<li class="chapter" data-level="1.1.2.1" data-path="advanced-r.html"><a href="advanced-r.html#atomic-vectors"><i class="fa fa-check"></i><b>1.1.2.1</b> Atomic Vectors</a>
+<ul>
+<li class="chapter" data-level="1.1.2.1.1" data-path="advanced-r.html"><a href="advanced-r.html#types"><i class="fa fa-check"></i><b>1.1.2.1.1</b> Types</a></li>
+<li class="chapter" data-level="1.1.2.1.2" data-path="advanced-r.html"><a href="advanced-r.html#combine-scalars"><i class="fa fa-check"></i><b>1.1.2.1.2</b> Combine scalars</a></li>
+<li class="chapter" data-level="1.1.2.1.3" data-path="advanced-r.html"><a href="advanced-r.html#missing-values"><i class="fa fa-check"></i><b>1.1.2.1.3</b> Missing values</a></li>
+<li class="chapter" data-level="1.1.2.1.4" data-path="advanced-r.html"><a href="advanced-r.html#testing-and-coercing-vectors"><i class="fa fa-check"></i><b>1.1.2.1.4</b> Testing and coercing vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#attributes"><i class="fa fa-check"></i>Attributes</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#getting-and-setting-attributes"><i class="fa fa-check"></i>Getting and setting attributes</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#names"><i class="fa fa-check"></i>Names</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#dimensions"><i class="fa fa-check"></i>Dimensions</a></li>
+<li class="chapter" data-level="1.1.2.2" data-path="advanced-r.html"><a href="advanced-r.html#attributes"><i class="fa fa-check"></i><b>1.1.2.2</b> Attributes</a>
+<ul>
+<li class="chapter" data-level="1.1.2.2.1" data-path="advanced-r.html"><a href="advanced-r.html#getting-and-setting-attributes"><i class="fa fa-check"></i><b>1.1.2.2.1</b> Getting and setting attributes</a></li>
+<li class="chapter" data-level="1.1.2.2.2" data-path="advanced-r.html"><a href="advanced-r.html#names"><i class="fa fa-check"></i><b>1.1.2.2.2</b> Names</a></li>
+<li class="chapter" data-level="1.1.2.2.3" data-path="advanced-r.html"><a href="advanced-r.html#dimensions"><i class="fa fa-check"></i><b>1.1.2.2.3</b> Dimensions</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#s3-atomic-vectors"><i class="fa fa-check"></i>S3 Atomic Vectors</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#factors"><i class="fa fa-check"></i>Factors</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#dates"><i class="fa fa-check"></i>Dates</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#date-times"><i class="fa fa-check"></i>Date-times</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#difftimes"><i class="fa fa-check"></i>Difftimes</a></li>
+<li class="chapter" data-level="1.1.2.3" data-path="advanced-r.html"><a href="advanced-r.html#s3-atomic-vectors"><i class="fa fa-check"></i><b>1.1.2.3</b> S3 Atomic Vectors</a>
+<ul>
+<li class="chapter" data-level="1.1.2.3.1" data-path="advanced-r.html"><a href="advanced-r.html#factors"><i class="fa fa-check"></i><b>1.1.2.3.1</b> Factors</a></li>
+<li class="chapter" data-level="1.1.2.3.2" data-path="advanced-r.html"><a href="advanced-r.html#dates"><i class="fa fa-check"></i><b>1.1.2.3.2</b> Dates</a></li>
+<li class="chapter" data-level="1.1.2.3.3" data-path="advanced-r.html"><a href="advanced-r.html#date-times"><i class="fa fa-check"></i><b>1.1.2.3.3</b> Date-times</a></li>
+<li class="chapter" data-level="1.1.2.3.4" data-path="advanced-r.html"><a href="advanced-r.html#difftimes"><i class="fa fa-check"></i><b>1.1.2.3.4</b> Difftimes</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#lists"><i class="fa fa-check"></i>Lists</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#testing-and-coercing-lists"><i class="fa fa-check"></i>Testing and coercing lists</a></li>
+<li class="chapter" data-level="1.1.2.4" data-path="advanced-r.html"><a href="advanced-r.html#lists"><i class="fa fa-check"></i><b>1.1.2.4</b> Lists</a>
+<ul>
+<li class="chapter" data-level="1.1.2.4.1" data-path="advanced-r.html"><a href="advanced-r.html#testing-and-coercing-lists"><i class="fa fa-check"></i><b>1.1.2.4.1</b> Testing and coercing lists</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#data-frames-and-tibbles"><i class="fa fa-check"></i>Data frames and tibbles</a><ul>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#creating-data.frame-or-tbl_df"><i class="fa fa-check"></i>Creating data.frame or tbl_df</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#row-names"><i class="fa fa-check"></i>Row Names</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#subsetting"><i class="fa fa-check"></i>Subsetting</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#testing-and-coercion"><i class="fa fa-check"></i>Testing and coercion</a></li>
-<li class="chapter" data-level="" data-path="advanced-r.html"><a href="advanced-r.html#list-columns"><i class="fa fa-check"></i>List Columns</a></li>
+<li class="chapter" data-level="1.1.2.5" data-path="advanced-r.html"><a href="advanced-r.html#data-frames-and-tibbles"><i class="fa fa-check"></i><b>1.1.2.5</b> Data frames and tibbles</a>
+<ul>
+<li class="chapter" data-level="1.1.2.5.1" data-path="advanced-r.html"><a href="advanced-r.html#creating-data.frame-or-tbl_df"><i class="fa fa-check"></i><b>1.1.2.5.1</b> Creating data.frame or tbl_df</a></li>
+<li class="chapter" data-level="1.1.2.5.2" data-path="advanced-r.html"><a href="advanced-r.html#row-names"><i class="fa fa-check"></i><b>1.1.2.5.2</b> Row Names</a></li>
+<li class="chapter" data-level="1.1.2.5.3" data-path="advanced-r.html"><a href="advanced-r.html#subsetting"><i class="fa fa-check"></i><b>1.1.2.5.3</b> Subsetting</a></li>
+<li class="chapter" data-level="1.1.2.5.4" data-path="advanced-r.html"><a href="advanced-r.html#testing-and-coercion"><i class="fa fa-check"></i><b>1.1.2.5.4</b> Testing and coercion</a></li>
+<li class="chapter" data-level="1.1.2.5.5" data-path="advanced-r.html"><a href="advanced-r.html#list-columns"><i class="fa fa-check"></i><b>1.1.2.5.5</b> List Columns</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.2.6" data-path="advanced-r.html"><a href="advanced-r.html#null"><i class="fa fa-check"></i><b>1.1.2.6</b> NULL</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.3" data-path="advanced-r.html"><a href="advanced-r.html#arsub"><i class="fa fa-check"></i><b>1.1.3</b> Subsetting</a>
+<ul>
+<li class="chapter" data-level="1.1.3.1" data-path="advanced-r.html"><a href="advanced-r.html#selecting-multiple-elements"><i class="fa fa-check"></i><b>1.1.3.1</b> Selecting multiple elements</a>
+<ul>
+<li class="chapter" data-level="1.1.3.1.1" data-path="advanced-r.html"><a href="advanced-r.html#atomic-vectors-1"><i class="fa fa-check"></i><b>1.1.3.1.1</b> Atomic Vectors</a></li>
+<li class="chapter" data-level="1.1.3.1.2" data-path="advanced-r.html"><a href="advanced-r.html#lists-1"><i class="fa fa-check"></i><b>1.1.3.1.2</b> Lists</a></li>
+<li class="chapter" data-level="1.1.3.1.3" data-path="advanced-r.html"><a href="advanced-r.html#matrices-and-arrays"><i class="fa fa-check"></i><b>1.1.3.1.3</b> Matrices and arrays</a></li>
+<li class="chapter" data-level="1.1.3.1.4" data-path="advanced-r.html"><a href="advanced-r.html#data-frames-and-tibbles-1"><i class="fa fa-check"></i><b>1.1.3.1.4</b> Data frames and tibbles</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.3.2" data-path="advanced-r.html"><a href="advanced-r.html#selecting-a-single-element"><i class="fa fa-check"></i><b>1.1.3.2</b> Selecting a single element</a>
+<ul>
+<li class="chapter" data-level="1.1.3.2.1" data-path="advanced-r.html"><a href="advanced-r.html#section"><i class="fa fa-check"></i><b>1.1.3.2.1</b> [[</a></li>
+<li class="chapter" data-level="1.1.3.2.2" data-path="advanced-r.html"><a href="advanced-r.html#section-1"><i class="fa fa-check"></i><b>1.1.3.2.2</b> $</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.3.3" data-path="advanced-r.html"><a href="advanced-r.html#subassignment"><i class="fa fa-check"></i><b>1.1.3.3</b> Subassignment</a></li>
+<li class="chapter" data-level="1.1.3.4" data-path="advanced-r.html"><a href="advanced-r.html#applications"><i class="fa fa-check"></i><b>1.1.3.4</b> Applications</a>
+<ul>
+<li class="chapter" data-level="1.1.3.4.1" data-path="advanced-r.html"><a href="advanced-r.html#lookup-tables"><i class="fa fa-check"></i><b>1.1.3.4.1</b> Lookup tables</a></li>
+<li class="chapter" data-level="1.1.3.4.2" data-path="advanced-r.html"><a href="advanced-r.html#matching-and-merging-by-integer-subsetting"><i class="fa fa-check"></i><b>1.1.3.4.2</b> Matching and merging by integer subsetting</a></li>
+<li class="chapter" data-level="1.1.3.4.3" data-path="advanced-r.html"><a href="advanced-r.html#random-and-bootstrap-sampling"><i class="fa fa-check"></i><b>1.1.3.4.3</b> Random and Bootstrap sampling</a></li>
+<li class="chapter" data-level="1.1.3.4.4" data-path="advanced-r.html"><a href="advanced-r.html#arordering"><i class="fa fa-check"></i><b>1.1.3.4.4</b> Ordering</a></li>
+<li class="chapter" data-level="1.1.3.4.5" data-path="advanced-r.html"><a href="advanced-r.html#random-sort"><i class="fa fa-check"></i><b>1.1.3.4.5</b> Random sort</a></li>
+<li class="chapter" data-level="1.1.3.4.6" data-path="advanced-r.html"><a href="advanced-r.html#expanding-aggregate-counts"><i class="fa fa-check"></i><b>1.1.3.4.6</b> Expanding aggregate counts</a></li>
+<li class="chapter" data-level="1.1.3.4.7" data-path="advanced-r.html"><a href="advanced-r.html#removing-data-frame-columns"><i class="fa fa-check"></i><b>1.1.3.4.7</b> Removing data frame columns</a></li>
+<li class="chapter" data-level="1.1.3.4.8" data-path="advanced-r.html"><a href="advanced-r.html#logical-subsetting"><i class="fa fa-check"></i><b>1.1.3.4.8</b> Logical subsetting</a></li>
+<li class="chapter" data-level="1.1.3.4.9" data-path="advanced-r.html"><a href="advanced-r.html#boolean-algebra-and-sets"><i class="fa fa-check"></i><b>1.1.3.4.9</b> Boolean algebra and sets</a></li>
 </ul></li>
 </ul></li>
+<li class="chapter" data-level="1.1.4" data-path="advanced-r.html"><a href="advanced-r.html#arconflow"><i class="fa fa-check"></i><b>1.1.4</b> Control Flow</a>
+<ul>
+<li class="chapter" data-level="1.1.4.1" data-path="advanced-r.html"><a href="advanced-r.html#choices"><i class="fa fa-check"></i><b>1.1.4.1</b> Choices</a>
+<ul>
+<li class="chapter" data-level="1.1.4.1.1" data-path="advanced-r.html"><a href="advanced-r.html#vectorized-if"><i class="fa fa-check"></i><b>1.1.4.1.1</b> Vectorized <code>if</code></a></li>
+<li class="chapter" data-level="1.1.4.1.2" data-path="advanced-r.html"><a href="advanced-r.html#switch-statement"><i class="fa fa-check"></i><b>1.1.4.1.2</b> <code>switch()</code> statement</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.4.2" data-path="advanced-r.html"><a href="advanced-r.html#loops"><i class="fa fa-check"></i><b>1.1.4.2</b> Loops</a>
+<ul>
+<li class="chapter" data-level="1.1.4.2.1" data-path="advanced-r.html"><a href="advanced-r.html#other-loops"><i class="fa fa-check"></i><b>1.1.4.2.1</b> Other loops</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>1</b> Import</a></li>
-<li class="chapter" data-level="2" data-path="tidy.html"><a href="tidy.html"><i class="fa fa-check"></i><b>2</b> Tidy</a></li>
-<li class="chapter" data-level="3" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>3</b> Transform</a></li>
-<li class="chapter" data-level="4" data-path="visualise.html"><a href="visualise.html"><i class="fa fa-check"></i><b>4</b> Visualise</a></li>
-<li class="chapter" data-level="5" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>5</b> Statistics</a></li>
-<li class="chapter" data-level="6" data-path="communicate.html"><a href="communicate.html"><i class="fa fa-check"></i><b>6</b> Communicate</a><ul>
-<li class="chapter" data-level="6.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html"><i class="fa fa-check"></i><b>6.1</b> Markdown/bookdown tips</a><ul>
-<li class="chapter" data-level="6.1.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#syntax"><i class="fa fa-check"></i><b>6.1.1</b> Syntax</a><ul>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#inline-formatting"><i class="fa fa-check"></i>Inline Formatting</a></li>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#section-headers"><i class="fa fa-check"></i>Section Headers</a></li>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#unordered-lists"><i class="fa fa-check"></i>Unordered Lists</a></li>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#ordered-lists"><i class="fa fa-check"></i>Ordered lists</a></li>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#block-quotes"><i class="fa fa-check"></i>Block Quotes</a></li>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#code-blocks"><i class="fa fa-check"></i>Code Blocks</a></li>
-<li class="chapter" data-level="6.1.1.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#tables"><i class="fa fa-check"></i><b>6.1.1.1</b> Tables</a><ul>
-<li class="chapter" data-level="6.1.1.1.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#grid-tables"><i class="fa fa-check"></i><b>6.1.1.1.1</b> Grid Tables</a></li>
-<li class="chapter" data-level="6.1.1.1.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#pipe-tables"><i class="fa fa-check"></i><b>6.1.1.1.2</b> Pipe Tables</a></li>
+<li class="chapter" data-level="1.1.5" data-path="advanced-r.html"><a href="advanced-r.html#arfunc"><i class="fa fa-check"></i><b>1.1.5</b> Functions</a>
+<ul>
+<li class="chapter" data-level="1.1.5.1" data-path="advanced-r.html"><a href="advanced-r.html#function-components"><i class="fa fa-check"></i><b>1.1.5.1</b> Function Components</a></li>
+<li class="chapter" data-level="1.1.5.2" data-path="advanced-r.html"><a href="advanced-r.html#primitives"><i class="fa fa-check"></i><b>1.1.5.2</b> Primitives</a></li>
+<li class="chapter" data-level="1.1.5.3" data-path="advanced-r.html"><a href="advanced-r.html#anonymous-functions-and-closures"><i class="fa fa-check"></i><b>1.1.5.3</b> Anonymous functions and Closures</a></li>
+<li class="chapter" data-level="1.1.5.4" data-path="advanced-r.html"><a href="advanced-r.html#invoking-functions"><i class="fa fa-check"></i><b>1.1.5.4</b> Invoking functions</a></li>
+<li class="chapter" data-level="1.1.5.5" data-path="advanced-r.html"><a href="advanced-r.html#function-composition"><i class="fa fa-check"></i><b>1.1.5.5</b> Function Composition</a></li>
+<li class="chapter" data-level="1.1.5.6" data-path="advanced-r.html"><a href="advanced-r.html#lexical-scoping"><i class="fa fa-check"></i><b>1.1.5.6</b> Lexical scoping</a>
+<ul>
+<li class="chapter" data-level="1.1.5.6.1" data-path="advanced-r.html"><a href="advanced-r.html#name-masking"><i class="fa fa-check"></i><b>1.1.5.6.1</b> Name masking</a></li>
+<li class="chapter" data-level="1.1.5.6.2" data-path="advanced-r.html"><a href="advanced-r.html#functions-vs-variables"><i class="fa fa-check"></i><b>1.1.5.6.2</b> Functions vs variables</a></li>
+<li class="chapter" data-level="1.1.5.6.3" data-path="advanced-r.html"><a href="advanced-r.html#variable-lifespan"><i class="fa fa-check"></i><b>1.1.5.6.3</b> Variable lifespan</a></li>
+<li class="chapter" data-level="1.1.5.6.4" data-path="advanced-r.html"><a href="advanced-r.html#dynamic-lookup"><i class="fa fa-check"></i><b>1.1.5.6.4</b> Dynamic lookup</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#horizontal-rules"><i class="fa fa-check"></i>Horizontal Rules</a></li>
+<li class="chapter" data-level="1.1.5.7" data-path="advanced-r.html"><a href="advanced-r.html#lazy-evaluation"><i class="fa fa-check"></i><b>1.1.5.7</b> Lazy evaluation</a>
+<ul>
+<li class="chapter" data-level="1.1.5.7.1" data-path="advanced-r.html"><a href="advanced-r.html#promises"><i class="fa fa-check"></i><b>1.1.5.7.1</b> Promises</a></li>
+<li class="chapter" data-level="1.1.5.7.2" data-path="advanced-r.html"><a href="advanced-r.html#default-arguments"><i class="fa fa-check"></i><b>1.1.5.7.2</b> Default arguments</a></li>
+<li class="chapter" data-level="1.1.5.7.3" data-path="advanced-r.html"><a href="advanced-r.html#missing-arguments"><i class="fa fa-check"></i><b>1.1.5.7.3</b> Missing arguments</a>
+<ul>
+<li class="chapter" data-level="1.1.5.7.3.1" data-path="advanced-r.html"><a href="advanced-r.html#infix-function"><i class="fa fa-check"></i><b>1.1.5.7.3.1</b> <code>%||%</code> infix function</a></li>
 </ul></li>
-<li class="chapter" data-level="6.1.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#cache-large-code-chunks"><i class="fa fa-check"></i><b>6.1.2</b> Cache large code chunks</a></li>
-<li class="chapter" data-level="6.1.3" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#chunk-options"><i class="fa fa-check"></i><b>6.1.3</b> Chunk Options</a><ul>
-<li class="chapter" data-level="6.1.3.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#collapse"><i class="fa fa-check"></i><b>6.1.3.1</b> Collapse</a></li>
-<li class="chapter" data-level="6.1.3.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#error"><i class="fa fa-check"></i><b>6.1.3.2</b> Error</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#resources"><i class="fa fa-check"></i>Resources</a></li>
-<li class="chapter" data-level="" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#chapter-session-info"><i class="fa fa-check"></i>Chapter Session Info</a></li>
+<li class="chapter" data-level="1.1.5.8" data-path="advanced-r.html"><a href="advanced-r.html#dot-dot-dot"><i class="fa fa-check"></i><b>1.1.5.8</b> <code>...</code> (dot-dot-dot)</a></li>
+<li class="chapter" data-level="1.1.5.9" data-path="advanced-r.html"><a href="advanced-r.html#exiting-a-function"><i class="fa fa-check"></i><b>1.1.5.9</b> Exiting a function</a>
+<ul>
+<li class="chapter" data-level="1.1.5.9.1" data-path="advanced-r.html"><a href="advanced-r.html#explicit-vs-implicit"><i class="fa fa-check"></i><b>1.1.5.9.1</b> Explicit vs implicit</a></li>
+<li class="chapter" data-level="1.1.5.9.2" data-path="advanced-r.html"><a href="advanced-r.html#visible-vs-invisible"><i class="fa fa-check"></i><b>1.1.5.9.2</b> Visible vs invisible</a></li>
+<li class="chapter" data-level="1.1.5.9.3" data-path="advanced-r.html"><a href="advanced-r.html#errors"><i class="fa fa-check"></i><b>1.1.5.9.3</b> Errors</a></li>
+<li class="chapter" data-level="1.1.5.9.4" data-path="advanced-r.html"><a href="advanced-r.html#exit-handlers"><i class="fa fa-check"></i><b>1.1.5.9.4</b> Exit handlers</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.5.10" data-path="advanced-r.html"><a href="advanced-r.html#function-forms"><i class="fa fa-check"></i><b>1.1.5.10</b> Function forms</a>
+<ul>
+<li class="chapter" data-level="1.1.5.10.1" data-path="advanced-r.html"><a href="advanced-r.html#prefix-form"><i class="fa fa-check"></i><b>1.1.5.10.1</b> Prefix form</a></li>
+<li class="chapter" data-level="1.1.5.10.2" data-path="advanced-r.html"><a href="advanced-r.html#infix-form"><i class="fa fa-check"></i><b>1.1.5.10.2</b> Infix form</a></li>
+<li class="chapter" data-level="1.1.5.10.3" data-path="advanced-r.html"><a href="advanced-r.html#replacement-form"><i class="fa fa-check"></i><b>1.1.5.10.3</b> Replacement form</a></li>
+<li class="chapter" data-level="1.1.5.10.4" data-path="advanced-r.html"><a href="advanced-r.html#specials"><i class="fa fa-check"></i><b>1.1.5.10.4</b> Specials</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1.1.6" data-path="advanced-r.html"><a href="advanced-r.html#environments"><i class="fa fa-check"></i><b>1.1.6</b> Environments</a></li>
+<li class="chapter" data-level="1.1.7" data-path="advanced-r.html"><a href="advanced-r.html#conditionals"><i class="fa fa-check"></i><b>1.1.7</b> Conditionals</a></li>
+<li class="chapter" data-level="1.1.8" data-path="advanced-r.html"><a href="advanced-r.html#arfunctionals"><i class="fa fa-check"></i><b>1.1.8</b> Functionals</a>
+<ul>
+<li class="chapter" data-level="1.1.8.1" data-path="advanced-r.html"><a href="advanced-r.html#lapply-and-purrrmap"><i class="fa fa-check"></i><b>1.1.8.1</b> lapply() and purrr::map()</a>
+<ul>
+<li class="chapter" data-level="1.1.8.1.1" data-path="advanced-r.html"><a href="advanced-r.html#returning-atomic-vectors"><i class="fa fa-check"></i><b>1.1.8.1.1</b> Returning atomic vectors</a></li>
+<li class="chapter" data-level="1.1.8.1.2" data-path="advanced-r.html"><a href="advanced-r.html#anonymous-functions-and-purrr-formulas"><i class="fa fa-check"></i><b>1.1.8.1.2</b> Anonymous functions and purrr formulas</a></li>
+<li class="chapter" data-level="1.1.8.1.3" data-path="advanced-r.html"><a href="advanced-r.html#dots-for-passing-arguments"><i class="fa fa-check"></i><b>1.1.8.1.3</b> … (dots) for passing arguments</a></li>
+<li class="chapter" data-level="1.1.8.1.4" data-path="advanced-r.html"><a href="advanced-r.html#apply-as-for-loop-generator"><i class="fa fa-check"></i><b>1.1.8.1.4</b> Apply as for loop generator</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.8.2" data-path="advanced-r.html"><a href="advanced-r.html#purrr-style"><i class="fa fa-check"></i><b>1.1.8.2</b> Purrr style</a></li>
+<li class="chapter" data-level="1.1.8.3" data-path="advanced-r.html"><a href="advanced-r.html#map-variants"><i class="fa fa-check"></i><b>1.1.8.3</b> Map variants</a>
+<ul>
+<li class="chapter" data-level="1.1.8.3.1" data-path="advanced-r.html"><a href="advanced-r.html#modify"><i class="fa fa-check"></i><b>1.1.8.3.1</b> <code>modify()</code></a></li>
+<li class="chapter" data-level="1.1.8.3.2" data-path="advanced-r.html"><a href="advanced-r.html#map2"><i class="fa fa-check"></i><b>1.1.8.3.2</b> <code>map2()</code></a></li>
+<li class="chapter" data-level="1.1.8.3.3" data-path="advanced-r.html"><a href="advanced-r.html#walk"><i class="fa fa-check"></i><b>1.1.8.3.3</b> <code>walk()</code></a></li>
+<li class="chapter" data-level="1.1.8.3.4" data-path="advanced-r.html"><a href="advanced-r.html#imap"><i class="fa fa-check"></i><b>1.1.8.3.4</b> <code>imap()</code></a></li>
+<li class="chapter" data-level="1.1.8.3.5" data-path="advanced-r.html"><a href="advanced-r.html#pmap"><i class="fa fa-check"></i><b>1.1.8.3.5</b> <code>pmap()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.8.4" data-path="advanced-r.html"><a href="advanced-r.html#reduce"><i class="fa fa-check"></i><b>1.1.8.4</b> Reduce</a>
+<ul>
+<li class="chapter" data-level="1.1.8.4.1" data-path="advanced-r.html"><a href="advanced-r.html#basics"><i class="fa fa-check"></i><b>1.1.8.4.1</b> Basics</a></li>
+<li class="chapter" data-level="1.1.8.4.2" data-path="advanced-r.html"><a href="advanced-r.html#accumulate"><i class="fa fa-check"></i><b>1.1.8.4.2</b> Accumulate</a></li>
+<li class="chapter" data-level="1.1.8.4.3" data-path="advanced-r.html"><a href="advanced-r.html#output-types"><i class="fa fa-check"></i><b>1.1.8.4.3</b> Output types</a></li>
+<li class="chapter" data-level="1.1.8.4.4" data-path="advanced-r.html"><a href="advanced-r.html#multiple-inputs"><i class="fa fa-check"></i><b>1.1.8.4.4</b> Multiple inputs</a></li>
+<li class="chapter" data-level="1.1.8.4.5" data-path="advanced-r.html"><a href="advanced-r.html#map-reduce"><i class="fa fa-check"></i><b>1.1.8.4.5</b> Map-Reduce</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.8.5" data-path="advanced-r.html"><a href="advanced-r.html#predicates"><i class="fa fa-check"></i><b>1.1.8.5</b> Predicates</a>
+<ul>
+<li class="chapter" data-level="1.1.8.5.1" data-path="advanced-r.html"><a href="advanced-r.html#predicate-functionals"><i class="fa fa-check"></i><b>1.1.8.5.1</b> Predicate functionals</a></li>
+<li class="chapter" data-level="1.1.8.5.2" data-path="advanced-r.html"><a href="advanced-r.html#map-variants-1"><i class="fa fa-check"></i><b>1.1.8.5.2</b> Map variants</a></li>
+</ul></li>
+<li class="chapter" data-level="1.1.8.6" data-path="advanced-r.html"><a href="advanced-r.html#base-functionals"><i class="fa fa-check"></i><b>1.1.8.6</b> Base functionals</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="misc-temp-r.html"><a href="misc-temp-r.html"><i class="fa fa-check"></i><b>1.2</b> Misc Temp R</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="misc-temp-r.html"><a href="misc-temp-r.html#combining-execution"><i class="fa fa-check"></i><b>1.2.1</b> combining execution</a></li>
+<li class="chapter" data-level="1.2.2" data-path="misc-temp-r.html"><a href="misc-temp-r.html#infixfuncs"><i class="fa fa-check"></i><b>1.2.2</b> Infix functions</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="import.html"><a href="import.html"><i class="fa fa-check"></i><b>2</b> Import</a></li>
+<li class="chapter" data-level="3" data-path="tidy.html"><a href="tidy.html"><i class="fa fa-check"></i><b>3</b> Tidy</a></li>
+<li class="chapter" data-level="4" data-path="transform.html"><a href="transform.html"><i class="fa fa-check"></i><b>4</b> Transform</a></li>
+<li class="chapter" data-level="5" data-path="visualise.html"><a href="visualise.html"><i class="fa fa-check"></i><b>5</b> Visualise</a></li>
+<li class="chapter" data-level="6" data-path="statistics.html"><a href="statistics.html"><i class="fa fa-check"></i><b>6</b> Statistics</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="set-theory.html"><a href="set-theory.html"><i class="fa fa-check"></i><b>6.1</b> set theory</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="communicate.html"><a href="communicate.html"><i class="fa fa-check"></i><b>7</b> Communicate</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html"><i class="fa fa-check"></i><b>7.1</b> Markdown/bookdown tips</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#syntax"><i class="fa fa-check"></i><b>7.1.1</b> Syntax</a>
+<ul>
+<li class="chapter" data-level="7.1.1.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#inline-formatting"><i class="fa fa-check"></i><b>7.1.1.1</b> Inline Formatting</a></li>
+<li class="chapter" data-level="7.1.1.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#line-returns"><i class="fa fa-check"></i><b>7.1.1.2</b> Line Returns</a></li>
+<li class="chapter" data-level="7.1.1.3" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#section-headers"><i class="fa fa-check"></i><b>7.1.1.3</b> Section Headers</a></li>
+<li class="chapter" data-level="7.1.1.4" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#unordered-lists"><i class="fa fa-check"></i><b>7.1.1.4</b> Unordered Lists</a></li>
+<li class="chapter" data-level="7.1.1.5" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#ordered-lists"><i class="fa fa-check"></i><b>7.1.1.5</b> Ordered lists</a></li>
+<li class="chapter" data-level="7.1.1.6" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#block-quotes"><i class="fa fa-check"></i><b>7.1.1.6</b> Block Quotes</a></li>
+<li class="chapter" data-level="7.1.1.7" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#code-blocks"><i class="fa fa-check"></i><b>7.1.1.7</b> Code Blocks</a>
+<ul>
+<li class="chapter" data-level="7.1.1.7.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#syntax-highlighting"><i class="fa fa-check"></i><b>7.1.1.7.1</b> Syntax highlighting</a></li>
+</ul></li>
+<li class="chapter" data-level="7.1.1.8" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#tables"><i class="fa fa-check"></i><b>7.1.1.8</b> Tables</a>
+<ul>
+<li class="chapter" data-level="7.1.1.8.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#grid-tables"><i class="fa fa-check"></i><b>7.1.1.8.1</b> Grid Tables</a></li>
+<li class="chapter" data-level="7.1.1.8.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#pipe-tables"><i class="fa fa-check"></i><b>7.1.1.8.2</b> Pipe Tables</a></li>
+</ul></li>
+<li class="chapter" data-level="7.1.1.9" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#horizontal-rules"><i class="fa fa-check"></i><b>7.1.1.9</b> Horizontal Rules</a></li>
+<li class="chapter" data-level="7.1.1.10" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#task-lists"><i class="fa fa-check"></i><b>7.1.1.10</b> Task lists</a></li>
+</ul></li>
+<li class="chapter" data-level="7.1.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#cache-large-code-chunks"><i class="fa fa-check"></i><b>7.1.2</b> Cache large code chunks</a></li>
+<li class="chapter" data-level="7.1.3" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#chunk-options"><i class="fa fa-check"></i><b>7.1.3</b> Chunk Options</a>
+<ul>
+<li class="chapter" data-level="7.1.3.1" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#collapse"><i class="fa fa-check"></i><b>7.1.3.1</b> Collapse</a></li>
+<li class="chapter" data-level="7.1.3.2" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#error"><i class="fa fa-check"></i><b>7.1.3.2</b> Error</a></li>
+</ul></li>
+<li class="chapter" data-level="7.1.4" data-path="markdownbookdown-tips.html"><a href="markdownbookdown-tips.html#resources"><i class="fa fa-check"></i><b>7.1.4</b> Resources</a></li>
 </ul></li>
 </ul></li>
 <li class="divider"></li>
@@ -230,12 +373,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="markdownbookdown-tips" class="section level2">
-<h2><span class="header-section-number">6.1</span> Markdown/bookdown tips</h2>
-<div id="syntax" class="section level3">
-<h3><span class="header-section-number">6.1.1</span> Syntax</h3>
-<div id="inline-formatting" class="section level4 unnumbered">
-<h4>Inline Formatting</h4>
+<div id="markdownbookdown-tips" class="section level2" number="7.1">
+<h2 number="7.1"><span class="header-section-number">7.1</span> Markdown/bookdown tips</h2>
+<div id="syntax" class="section level3" number="7.1.1">
+<h3 number="7.1.1"><span class="header-section-number">7.1.1</span> Syntax</h3>
+<div id="inline-formatting" class="section level4" number="7.1.1.1">
+<h4 number="7.1.1.1"><span class="header-section-number">7.1.1.1</span> Inline Formatting</h4>
 <table>
 <colgroup>
 <col width="33%" />
@@ -257,7 +400,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tr>
 <tr class="even">
 <td><strong>Bold</strong></td>
-<td><code>**Bold** or __Bold__</code></td>
+<td><code>**Bold** or _Bold_</code></td>
 <td>double asterisks or underscores</td>
 </tr>
 <tr class="odd">
@@ -311,33 +454,37 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <td><code>![text](link)</code></td>
 </tr>
 <tr class="odd">
-<td>Footnote<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></td>
+<td>Footnote<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></td>
 <td><code>^[Example footnote.]</code></td>
 <td><span style="color: red;">requires a </span> <code>.</code></td>
 </tr>
 <tr class="even">
-<td><span class="citation">Citation (<a href="#ref-example">2020</a>)</span></td>
+<td><span class="citation">Citation (<a href="markdownbookdown-tips.html#ref-example" role="doc-biblioref">2020</a>)</span></td>
 <td><code>@example</code></td>
 <td>@tag ref to BibTeX citation</td>
 </tr>
 <tr class="odd">
-<td><span class="citation">(Citation <a href="#ref-example">2020</a>)</span></td>
+<td><span class="citation">(Citation <a href="markdownbookdown-tips.html#ref-example" role="doc-biblioref">2020</a>)</span></td>
 <td><code>[@example]</code></td>
 <td>alternative style</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="section-headers" class="section level4 unnumbered">
-<h4>Section Headers</h4>
+<div id="line-returns" class="section level4" number="7.1.1.2">
+<h4 number="7.1.1.2"><span class="header-section-number">7.1.1.2</span> Line Returns</h4>
+<p>To force a line return use two spaces instead of one.</p>
+</div>
+<div id="section-headers" class="section level4" number="7.1.1.3">
+<h4 number="7.1.1.3"><span class="header-section-number">7.1.1.3</span> Section Headers</h4>
 <pre><code># level 1 header
 ## level 2 header
 ### level 3 header etc...</code></pre>
 <p>Add <code>{-}</code> after the header to remove section numbering:</p>
 <pre><code># Preface {-}</code></pre>
 </div>
-<div id="unordered-lists" class="section level4 unnumbered">
-<h4>Unordered Lists</h4>
+<div id="unordered-lists" class="section level4" number="7.1.1.4">
+<h4 number="7.1.1.4"><span class="header-section-number">7.1.1.4</span> Unordered Lists</h4>
 <ul>
 <li>item 1</li>
 <li>item 2
@@ -350,8 +497,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 * item 2
     * sub-item 1</code></pre>
 </div>
-<div id="ordered-lists" class="section level4 unnumbered">
-<h4>Ordered lists</h4>
+<div id="ordered-lists" class="section level4" number="7.1.1.5">
+<h4 number="7.1.1.5"><span class="header-section-number">7.1.1.5</span> Ordered lists</h4>
 <ol style="list-style-type: decimal">
 <li>item 1</li>
 <li>item 2
@@ -364,8 +511,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 2. item 2
     1. sub-item 1</code></pre>
 </div>
-<div id="block-quotes" class="section level4 unnumbered">
-<h4>Block Quotes</h4>
+<div id="block-quotes" class="section level4" number="7.1.1.6">
+<h4 number="7.1.1.6"><span class="header-section-number">7.1.1.6</span> Block Quotes</h4>
 <blockquote>
 <p>"You miss 100% of the shots you don’t take.</p>
 <p>— Wayne Gretzky"</p>
@@ -380,16 +527,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 &gt;
 &gt; &lt;div style=&quot;text-align: right&quot;&gt; --- Michael Scott&lt;/div&gt;</code></pre>
 </div>
-<div id="code-blocks" class="section level4 unnumbered">
-<h4>Code Blocks</h4>
+<div id="code-blocks" class="section level4" number="7.1.1.7">
+<h4 number="7.1.1.7"><span class="header-section-number">7.1.1.7</span> Code Blocks</h4>
 <pre><code>    ```
-    Use three back ticks to display text without markdown formatting.
+    Use three back ticks to display a block of text without markdown formatting.
     ```</code></pre>
+<div id="syntax-highlighting" class="section level5" number="7.1.1.7.1">
+<h5 number="7.1.1.7.1"><span class="header-section-number">7.1.1.7.1</span> Syntax highlighting</h5>
+<p>Include the language name after the initial backticks:</p>
+<pre><code>    ```r
+        data.frame(x = 1:10)
+    ``` </code></pre>
+<p>renders as :</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="markdownbookdown-tips.html#cb168-1"></a>    <span class="kw">data.frame</span>(<span class="dt">x =</span> <span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span></code></pre></div>
 </div>
-<div id="tables" class="section level4">
-<h4><span class="header-section-number">6.1.1.1</span> Tables</h4>
-<div id="grid-tables" class="section level5">
-<h5><span class="header-section-number">6.1.1.1.1</span> Grid Tables</h5>
+</div>
+<div id="tables" class="section level4" number="7.1.1.8">
+<h4 number="7.1.1.8"><span class="header-section-number">7.1.1.8</span> Tables</h4>
+<div id="grid-tables" class="section level5" number="7.1.1.8.1">
+<h5 number="7.1.1.8.1"><span class="header-section-number">7.1.1.8.1</span> Grid Tables</h5>
 <p>Basic tables can be used by aligning <code>+</code>,<code>-</code>, &amp; <code>|</code> in a grid as below. One
 advantage is the ability to put more than one markdown element in a cell. No
 alignment options are available and you may have to reformat your table manually.</p>
@@ -422,59 +578,110 @@ alignment options are available and you may have to reformat your table manually
 </tbody>
 </table>
 </div>
-<div id="pipe-tables" class="section level5">
-<h5><span class="header-section-number">6.1.1.1.2</span> Pipe Tables</h5>
+<div id="pipe-tables" class="section level5" number="7.1.1.8.2">
+<h5 number="7.1.1.8.2"><span class="header-section-number">7.1.1.8.2</span> Pipe Tables</h5>
+<p>Pipe tables are more flexible on formatting and allow alignment. Space must be left before and
+after the table, but pipes do not have to align. The dashes indicate the header and colon for
+aligning the text.</p>
+<pre><code>
+Show *(left)* | Character *(center)* | Color *(right)*
+:--- | :---: | ---:
+Paw Patrol | Rocky | Green
+Paw PatrolRubble | Yellow
+Paw Patrol | Chase | Blue
+Paw Patrol | Marshall | Red
+Paw Patrol | Zuma | Orange
+Paw Patrol | Sky | Pink
+</code></pre>
+<p>returns:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Show</th>
+<th align="center">Character</th>
+<th align="right">Color</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Paw Patrol</td>
+<td align="center">Rocky</td>
+<td align="right">Green</td>
+</tr>
+<tr class="even">
+<td align="left">Paw Patrol</td>
+<td align="center">Rubble</td>
+<td align="right">Yellow</td>
+</tr>
+<tr class="odd">
+<td align="left">Paw Patrol</td>
+<td align="center">Chase</td>
+<td align="right">Blue</td>
+</tr>
+<tr class="even">
+<td align="left">Paw Patrol</td>
+<td align="center">Marshall</td>
+<td align="right">Red</td>
+</tr>
+<tr class="odd">
+<td align="left">Paw Patrol</td>
+<td align="center">Zuma</td>
+<td align="right">Orange</td>
+</tr>
+<tr class="even">
+<td align="left">Paw Patrol</td>
+<td align="center">Sky</td>
+<td align="right">Pink</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-<div id="horizontal-rules" class="section level4 unnumbered">
-<h4>Horizontal Rules</h4>
+<div id="horizontal-rules" class="section level4" number="7.1.1.9">
+<h4 number="7.1.1.9"><span class="header-section-number">7.1.1.9</span> Horizontal Rules</h4>
 <p>Three or more <code>***</code>, <code>---</code>, or <code>___</code> will produce a horizontal rule; as will the <code>&lt;hr&gt;</code> HTML tag.</p>
 </div>
+<div id="task-lists" class="section level4" number="7.1.1.10">
+<h4 number="7.1.1.10"><span class="header-section-number">7.1.1.10</span> Task lists</h4>
+<p>For checked and unchecked tasklist items you can write an unordered list with <code>[ ]</code> or <code>[x]</code>.
+Notice the space between and surrounding brackets with text following.</p>
+<pre><code>- [ ] Garbage
+- [x] Dishes</code></pre>
+<ul class="task-list">
+<li><input type="checkbox" disabled="" />
+Garbage</li>
+<li><input type="checkbox" disabled="" checked="" />
+Dishes</li>
+</ul>
 </div>
-<div id="cache-large-code-chunks" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> Cache large code chunks</h3>
+</div>
+<div id="cache-large-code-chunks" class="section level3" number="7.1.2">
+<h3 number="7.1.2"><span class="header-section-number">7.1.2</span> Cache large code chunks</h3>
 <p><code>```{r chunk-id, cache=TRUE}</code></p>
 </div>
-<div id="chunk-options" class="section level3">
-<h3><span class="header-section-number">6.1.3</span> Chunk Options</h3>
-<div id="collapse" class="section level4">
-<h4><span class="header-section-number">6.1.3.1</span> Collapse</h4>
+<div id="chunk-options" class="section level3" number="7.1.3">
+<h3 number="7.1.3"><span class="header-section-number">7.1.3</span> Chunk Options</h3>
+<div id="collapse" class="section level4" number="7.1.3.1">
+<h4 number="7.1.3.1"><span class="header-section-number">7.1.3.1</span> Collapse</h4>
 <p>collapse=TRUE results in</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; <span class="kw">print</span>(x)</a>
-<a class="sourceLine" id="cb56-2" title="2"><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></a></code></pre></div>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="markdownbookdown-tips.html#cb172-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; <span class="kw">print</span>(x)</span>
+<span id="cb172-2"><a href="markdownbookdown-tips.html#cb172-2"></a><span class="co">##  [1]  1  2  3  4  5  6  7  8  9 10</span></span></code></pre></div>
 <p>rather than</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" title="1">x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; <span class="kw">print</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="markdownbookdown-tips.html#cb173-1"></a>x &lt;-<span class="st"> </span><span class="dv">1</span><span class="op">:</span><span class="dv">10</span>; <span class="kw">print</span>(x)</span></code></pre></div>
 <pre><code>##  [1]  1  2  3  4  5  6  7  8  9 10</code></pre>
 </div>
-<div id="error" class="section level4">
-<h4><span class="header-section-number">6.1.3.2</span> Error</h4>
+<div id="error" class="section level4" number="7.1.3.2">
+<h4 number="7.1.3.2"><span class="header-section-number">7.1.3.2</span> Error</h4>
 <p>error=TRUE</p>
 </div>
 </div>
-<div id="resources" class="section level3 unnumbered">
-<h3>Resources</h3>
+<div id="resources" class="section level3" number="7.1.4">
+<h3 number="7.1.4"><span class="header-section-number">7.1.4</span> Resources</h3>
 <p><a href="https://bookdown.org/yihui/bookdown">Bookdown: Authoring Books with R Markdown</a> by its creator, Yihui Xie.</p>
 <p><a href="https://pandoc.org/">Pandoc</a></p>
-</div>
-<div id="chapter-session-info" class="section level3 unnumbered">
-<h3>Chapter Session Info</h3>
-<pre><code>## R version 3.6.1 (2019-07-05)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
-## Running under: Windows 10 x64 (build 18363)
-## 
-## Matrix products: default
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## loaded via a namespace (and not attached):
-##  [1] compiler_3.6.1  magrittr_1.5    bookdown_0.16   tools_3.6.1    
-##  [5] htmltools_0.4.0 yaml_2.2.0      Rcpp_1.0.1      stringi_1.4.3  
-##  [9] rmarkdown_1.13  knitr_1.23      stringr_1.4.0   xfun_0.8       
-## [13] digest_0.6.20   rlang_0.4.5     evaluate_0.14</code></pre>
 
-<div id="refs" class="references">
-<div>
+<div id="refs" class="references hanging-indent">
+<div id="ref-example">
 <p>Citation. 2020. “BibTeX Citation Example.”</p>
 </div>
 </div>
@@ -488,16 +695,12 @@ alignment options are available and you may have to reformat your table manually
 
 
 
-<h3>References</h3>
-<div id="refs" class="references">
-<div id="ref-example">
-<p>Citation. 2020. “BibTeX Citation Example.”</p>
-</div>
-</div>
+
+
 <div class="footnotes">
 <hr />
-<ol start="2">
-<li id="fn2"><p>Example footnote.<a href="markdownbookdown-tips.html#fnref2" class="footnote-back">↩</a></p></li>
+<ol start="3">
+<li id="fn3"><p>Example footnote.<a href="markdownbookdown-tips.html#fnref3" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

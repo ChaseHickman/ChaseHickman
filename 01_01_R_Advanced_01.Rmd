@@ -1,10 +1,22 @@
-## Advanced R {-}
+```{r include=FALSE}
+knitr::opts_chunk$set(echo=TRUE, collapse=TRUE)
+rm(list=ls())
+```
+## Advanced R{}
 
-[Advanced R](https://adv-r.hadley.nz/) 2nd ed. Hadley Wickham
+[Advanced R](https://adv-r.hadley.nz/) 2nd ed. Hadley Wickham  
 
-### Names and Values
+*Selected Chapters*  
+[Names and Values](#arnandv)  
+[Vectors](#arv)  
+[Subsetting](#arsub)  
+[Control Flow](#arconflow)  
+[Functions](#arfunc)  
+[Functionals](#arfunctionals)  
 
-#### Binding {-}
+### Names and Values{#arnandv}
+
+#### Binding{#arbinding}
 In R, names are assigned a value (e.g. a vector doesn't have a name, rather, a name(s) points to a vector). The actual address of an object is exposed by `lobstr::obj_addr()`.
 ```{r include=FALSE}
 library(lobstr)
@@ -25,7 +37,7 @@ fn <- function(z){
 obj_addr(fn(x))
 ```
 
-#### Syntactic Names {-}
+#### Syntactic Names{#arsyntacticnames}
 
 Names in R can be letters, numbers, `.` or `_`; but cannot start with a number or `_` or contain `?Reserved` words.
 
@@ -35,9 +47,9 @@ _x <- 1:10
 ```
 
 
-#### Copy-on-Modify {-#copyonmod}
+#### Copy-on-Modify {#arcopyonmod}
 
-R objects are generally immutable. A new copy is made when you modify an object. There are two [Modify-in-Place](#modinplace) exceptions.
+R objects are generally immutable. A new copy is made when you modify an object. There are two [Modify-in-Place](#armodinplace) exceptions.
 
 ```{r, echo=TRUE, collapse=TRUE}
 # create vector x
@@ -52,7 +64,7 @@ obj_addr(x)
 ```
 
 
-##### Trace Copying of Objects {-}
+##### Trace Copying of Objects {#artracecopy}
 
 `base::tracemem()` will mark an object and print a message whenever it is copied. This is
 a major cause of hard-to-predict memory usage.
@@ -70,9 +82,9 @@ x[[1]] <- 2
 base::untracemem(x = x)
 ```
 
-##### List Objects {-#lobjects}
+##### List Objects {#arlobjects}
 
-Just like variables, each element of a list also points to a value. [Copy-on-modify](#copyonmod) and [modify-in-place](#modinplace) applies here as well. R creates a **shallow** copy of the list. Meaning 
+Just like variables, each element of a list also points to a value. [Copy-on-modify](#arcopyonmod) and [modify-in-place](#armodinplace) applies here as well. R creates a **shallow** copy of the list. Meaning 
 the list object and its bindings are copied; however, the underlying values are not.
 
 In a deep copy, like prior to R 3.1.0, the underlying values are also copied.
@@ -110,7 +122,7 @@ ref(listA, listB)
 
 ```
 
-##### Data Frames {-}
+##### Data Frames {#ardataframes}
 
 A data frame is simply a list where each element is a vector of the same length.
 
@@ -147,7 +159,7 @@ ref(df)
 
 ```
 
-##### Character Vectors {-}
+##### Character Vectors {#archarvar}
 
 R uses a *global string pool* to store unique character objects so they are not duplicated 
 unnecessarily. Use the `character` argument to show their address in the global string pool 
@@ -167,7 +179,7 @@ ref(chr,
 
 ```
 
-#### Object Size {-}
+#### Object Size {#arobjsize}
 
 `lobstr::obj_size()` shows the amount of memory an object takes, while `obj_sizes()`
 breaks down multiple objects into their individual contribution to *total* memory.
@@ -198,7 +210,7 @@ obj_sizes(list1, list2)
 ```
 
 
-#### Modify-in-Place {-#modinplace}
+#### Modify-in-Place {#armodinplace}
 
 There are two places where R will optimize memory by modfiying an object "in place"
 (i.e. does not make a copy).
@@ -242,7 +254,7 @@ untracemem(df)
 Environments are always modified in place and all objects within the environment
 keep the same reference.
 
-#### Unbinding and Garbage Collector (GC) {-}
+#### Unbinding and Garbage Collector (GC) {#argc}
 
 The (GC) garbage collector deletes objects that are no longer used and requests
 more memory from the operating system as needed to create objects.
@@ -258,10 +270,3 @@ x <- TRUE
 remove(x)
 ```
 You can call GC yourself with `base::gc()`, but the user should not ever have the need.
-
-#### Session Info {-}
-
-```{r echo=FALSE}
-print(x = sessionInfo(), 
-      local = F)
-```

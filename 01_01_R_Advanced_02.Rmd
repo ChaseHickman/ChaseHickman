@@ -1,8 +1,9 @@
 ```{r include=FALSE}
-knitr::opts_chunk$set(echo=TRUE, collapse = TRUE)
+knitr::opts_chunk$set(echo=TRUE, collapse=TRUE)
+rm(list=ls())
 ```
 
-### Vectors
+### Vectors{#arv}
 
 R has two types of vectors: **atomic** vectors and **list** vectors.
 
@@ -17,9 +18,9 @@ Vectors can have *attributes*; the most important are **dimension** and **class*
 * dimension: turns a vector into matrices and arrays
 * class: critical for S3 objects like factors, dates & date-time, data frames, and tibbles
 
-#### Atomic Vectors {-}
+#### Atomic Vectors {}
 
-##### Types{-}
+##### Types{}
 
 There are four primary types of atomic vectors, and their **scalars** (*i.e. individual value*) can 
 be instantiated as:
@@ -32,7 +33,7 @@ be instantiated as:
 Doubles and Integers belong to meta-type **numeric**. `is.numeric()` tests if a vector can be interpreted
 as a number: `is.numeric(2.2)` = `r is.numeric(2.2)` = `is.numeric(2L)` = `r is.numeric(2L)`
  
-##### Combine scalars{-}
+##### Combine scalars{}
 
 Scalars can be combined to make longer vectors using `c()`:
 ```{r echo=TRUE, collapse=TRUE}
@@ -54,7 +55,7 @@ typeof(y); length(y)
 typeof(NULL); length(NULL)
 ```
  
-##### Missing values{-}
+##### Missing values{}
 
 Missing values are represented by `NA` (Not Applicable). There are logical (`NA`),
 integer (`NA_integer_`), double (`NA_real_`), and character (`NA_character_`) types
@@ -88,7 +89,7 @@ The exception is when all possible values would not change the result:
 NA | TRUE
 ```
 
-##### Testing and coercing vectors {-}
+##### Testing and coercing vectors {}
 
 There are many `is.*()` pattern functions in R to test vector type. `is.logical()`, 
 `is.integer()`, `is.double()`, and `is.character()` all test for the four primary
@@ -127,12 +128,12 @@ str(as.character(c(2e1, 200)))
 ```
 
 
-#### Attributes {-}
+#### Attributes {}
 
 Other data-structures in R are built on top of these atomic vectors using attributes. 
 For example, the **dimension** attribute transforms vectors into matrices and arrays.
 
-##### Getting and setting attributes {-}
+##### Getting and setting attributes {}
 
 Attributes are like meta-data you assign in name-value pairs:
 
@@ -161,7 +162,7 @@ str(attributes(fruit))
 
 ```
 
-##### Names{-}
+##### Names{}
 
 `names` is a special and important attribute in R. Although it is not enforced,
 names should be unique and complete. They can be set several ways:
@@ -185,7 +186,7 @@ attr(x, which = 'names') <- letters[1:3]
 attr(x, which='names')
 ```
 
-##### Dimensions{-}
+##### Dimensions{}
 
 The `dim` attribute transforms `NULL` dimensional vectors into 2d matrices and multi-dimensional arrays, and can be set by `dim()`, `matrix()`, and `array()`:
 
@@ -269,13 +270,13 @@ str(array(1:10, 10))
 
 ```
 
-#### S3 Atomic Vectors{-}
+#### S3 Atomic Vectors{}
 
 The attribute `class` is what makes an object part of the S3 object system in R, and 
 changes how generic functions behave compared to regular vectors. S3 objects are built
 on top of atomic vectors.
 
-##### Factors{-}
+##### Factors{}
 
 Factors are a ubiquitous S3 object in base R. They handle categorical variables where the 
 vector must contain only known values. 
@@ -285,7 +286,7 @@ Factors are built on atomic vectors of type `integer`, and only have two attribu
 Use `factor()` create a factor:
 
 * *x*: a vector coercible to `character`
-* *levels*: a unique vector of *expected* values in x; which can contain values not found in x or, conversly, exclude values found in x
+* *levels*: a unique vector of *expected* values in x; which can contain values not found in x or, conversely, exclude values found in x
 * *labels*: a vector of name *aliases* for levels (in the same order as levels) or scalar
 
 ```{r}
@@ -344,7 +345,7 @@ Finally, some functions coerce factors into strings (e.g. `grepl()`) while other
 (e.g. `c()`) return the integer substrate. If you want string-like behavior, best to 
 coerce `as.character()` before performing string operations.
 
-##### Dates{-}
+##### Dates{}
 
 Date vectors are S3 objects built on type `double`, and have only attribute: `class` "Date". They
 represent days from the [UNIX Epoch](https://en.wikipedia.org/wiki/Unix_time), 01-Jan-1970; and take
@@ -359,7 +360,7 @@ class(today)
 unclass(today)
 ```
 
-##### Date-times{-}
+##### Date-times{}
 
 S3 Date-times come in two flavors: POSIX^[Portable Operating System Interface standard.]ct *(calendar time)* & POSIXlt *(local time)*. POSIXct is build on type `double` whereas POSIXlt is type `list`,
 which we'll discuss later.
@@ -388,7 +389,7 @@ attr(ct, which = 'tzone') <- 'Asia/Tokyo'; ct
 unclass(ct)[1]
 ```
 
-##### Difftimes{-}
+##### Difftimes{}
 
 Difftimes are `doubles` which represent a duration of time (interpreted by attribute `units`) between
 two dates/datetimes. `units` includes "secs", "mins", "hours", "days", and "weeks" and are *not*
@@ -435,9 +436,9 @@ round(day, -1)
 unclass(day)[1]
 ```
 
-#### Lists{-}
+#### Lists{}
 
-[Earlier](#lobjects) we learned lists are just vectors of references to objects of any
+[Earlier](#arlobjects) we learned lists are just vectors of references to objects of any
 type. They have only attribute `class` "list".
 
 Lists are created with `list()`. Notice they can contain references to other list, and so 
@@ -459,7 +460,7 @@ library(magrittr)
 c(list(letters[1:3]), 1:3) %>% str()
 ```
 
-##### Testing and coercing lists {-}
+##### Testing and coercing lists {}
 
 ```{r}
 # test for list type
@@ -473,7 +474,7 @@ as.list(1:4)
 unlist(l)
 ```
 
-#### Data frames and tibbles{-}
+#### Data frames and tibbles{}
 
 Data frames are the most important data structure for data analysis in R. They are
 built on top of lists with attributes `class` "data.frame", "names" *(for columns)*,
@@ -482,7 +483,7 @@ and "row.names"; and, crucially, requires each element be a vector of equal leng
 Tibbles are data frames that were later developed as part of the [Tidyverse](https://www.tidyverse.org/). They try and optimize the default 
 behavior of `class` data.frame in the following ways.
 
-##### Creating data.frame or tbl_df{-}
+##### Creating data.frame or tbl_df{}
 
 `data.frame()` creates a data frame object from ... name = vector pairs:
 
@@ -575,7 +576,7 @@ tibble(1:4, # the longest column vector of length 4
 
 ```
 
-##### Row Names {-}
+##### Row Names {}
 
 Row names, a unique vector of `character`, can be assigned to Data frames. This idea
 probably arose due to data frame's close association to `numerical` matrices, where
@@ -602,7 +603,7 @@ as_tibble(df,
           rownames = "Super Hero")
 ```
 
-##### Subsetting {-}
+##### Subsetting {}
 
 Data frames can be subset either one dimensionaly, like a list, or two dimensionally,
 like a matrix.
@@ -626,15 +627,60 @@ as_tibble(df)$cotton
 
 ```
 
-##### Testing and coercion{-}
+##### Testing and coercion{}
 
 Type | Testing | Coercion 
 :--- | :--- | :---
 data frame | `is.data.frame()` | `as.data.frame()` 
-tibble | `is.tibble()` | `as.tibble()` 
+tibble | `is_tibble()` | `as_tibble()` 
 
 Note that `is.data.frame()` will return true for tibbles as well, since tibbles
 are `class` data.frame.
 
-##### List Columns{-}
+##### List Columns{}
 
+Because data frames are built on lists, they themsevles can contain lists. So it
+is possible in R to have a data frame containing data frames, making it easy
+to organize related datasets:
+
+```{r}
+df <- data.frame(x = 1)
+df$nested <- list(data.frame(cool = 1:3))
+
+class(df$nested[[1]])
+df$nested[[1]]
+```
+
+To include lists on creation use `I()`, which inhibits interpetation/conversion of objects
+by setting the `class` to "as is":
+
+```{r}
+data.frame(x= 1,
+           I(list(data.frame(1:3))))
+```
+
+Or use tibbles which can handle lists on creation without `I()`:
+
+```{r}
+tibble(x = 1,
+       dfs = list(tibble(1:3)))
+```
+
+#### NULL
+
+`NULL` is a special type in R. It has no attributes and is always zero length. It
+is primarily used for two things:
+
+1. represent an empty vector
+```{r}
+c()
+```
+2. represent a missing vector (e.g. often default function arguments are `NULL`). This is different
+than `NULL` in SQL, which is more like `NA`, because SQL `NULL` and R `NA` represent missing
+*elements* of a vector, rather than the vector itself.
+
+Test for NULL with `is.null()`:
+
+```{r}
+is.null(NULL)
+```
